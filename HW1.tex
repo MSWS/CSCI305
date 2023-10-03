@@ -1,0 +1,93 @@
+\documentclass{article}
+
+\usepackage[tmargin=0.5in,bmargin=0.25in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{listings}
+\usepackage{multicol}
+
+\title{CSCI 305 HW 1}
+\author{Isaac Boaz}
+
+\begin{document}
+\maketitle
+
+\lstset
+{ %Formatting for code in appendix
+    language=Python,
+    basicstyle=\footnotesize,
+    numbers=left,
+    stepnumber=1,
+    showstringspaces=false,
+    tabsize=1,
+    breaklines=true,
+    breakatwhitespace=false,
+    numbersep=-30pt,
+    xleftmargin=-20pt
+}
+\setlength{\columnseprule}{0.1pt}
+
+Do a detailed analysis for each of the following code snippets. Give the runtime in a big-O notation.
+
+\subsection*{Problem 1}
+\begin{multicols}{2}
+    \begin{lstlisting}
+        sum = 0
+            for i = 1 to n
+                for j = 1 to n
+                    sum++
+        return sum
+    \end{lstlisting}
+    \columnbreak
+    \begin{lstlisting}[numbers=none,mathescape]
+        1
+        n + 1
+        n + 1
+        $n^2$
+        1
+    \end{lstlisting}
+\end{multicols}
+
+\begin{align*}
+    [C_1 \cdot 1]
+    + [C_2 \cdot (n + 1)] &
+    + [C_3 \cdot (n+1)]
+    + [C_4 \cdot \mathbf{n^2}]
+    + [C_5 \cdot 1]                         \\
+                          & \implies O(n^2)
+\end{align*}
+
+\subsection*{Problem 2}
+\begin{multicols}{2}
+    \begin{lstlisting}
+        sum = 0
+            for i = 1 to n
+                for j = 1 to i
+                    sum++
+        return sum
+    \end{lstlisting}
+    \columnbreak
+    \begin{lstlisting}[numbers=none,mathescape]
+        1
+        n + 1
+        $\sum_{j=1}^{i+1}{j}$
+        $\sum_{j=1}^{i}{j}$
+        1
+    \end{lstlisting}
+\end{multicols}
+
+\begin{align*}
+    [C_1 \cdot 1]
+     & + [C_2 \cdot (n + 1)]
+    + [C_3 \cdot \sum_{j=1}^{i+1}{j}]
+    + [C_4 \cdot \sum_{j=1}^{i}{j}]
+    + [C_5 \cdot 1]          \\
+     & = [C_1 \cdot 1]
+    + [C_2 \cdot (n + 1)]
+    + [C_3 \cdot \frac{(\mathbf{n}+1)(\mathbf{n}+2)}{2}]
+    + [C_4 \cdot \frac{n(n+1)}{2}]
+    + [C_5 \cdot 1]          \\
+     & \implies O(n^2)
+\end{align*}
+
+
+\end{document}
