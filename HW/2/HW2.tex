@@ -1,0 +1,144 @@
+\documentclass{article}
+
+\usepackage[tmargin=0.3in,bmargin=0.25in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{enumerate,enumitem}
+
+\title{CSCI 305 HW 2}
+\author{Isaac Boaz}
+
+\begin{document}
+\maketitle
+
+
+\lstset
+{ %Formatting for code in appendix
+    language=Python,
+    basicstyle=\footnotesize,
+    numbers=left,
+    stepnumber=1,
+    showstringspaces=false,
+    tabsize=1,
+    breaklines=true,
+    breakatwhitespace=false,
+    numbersep=-30pt,
+    xleftmargin=-20pt
+}
+
+\setlength{\columnseprule}{0.5pt}
+
+\begin{multicols}{2}
+    \null
+    \begin{lstlisting}
+        for j = 2 to n
+            key = A[j]
+            // Insert A[j] into the sorted sequence A[1..j-1]
+            i = j-1
+            while i > 0 and A[i] > key
+                A[i+1] = A[i]
+                i = i -1
+            A[i+1] = key
+    \end{lstlisting}
+    \columnbreak
+    \footnotesize
+    \begin{tabular}{lcc}
+        cost  & times &                         \\
+              & b.c.  & w.c.                    \\
+        $C_1$ & $n$   & $n$                     \\
+        $C_2$ & $n-1$ & $n-1$                   \\
+        $C_3$ & $n-1$ & $n-1$                   \\
+        \\
+        $C_4$ & $n-1$ & $n-1$                   \\
+        $C_5$ & $n$   & $\sum_{i=1}^{j-1}$      \\
+        $C_6$ & 0     & $\sum_{i=1}^{j-1}{i-1}$ \\
+        $C_7$ & 0     & $\sum_{i=1}^{j-1}{i-1}$ \\
+        $C_8$ & $n-1$ & $n-1$
+    \end{tabular}
+\end{multicols}
+
+\begin{enumerate}
+    \item Walk through the algorithm using the following sequences.
+          \begin{multicols}{3}
+              \begin{center}
+                  8 2 4 9 3 6
+                  \begin{enumerate}[label=\arabic*.,leftmargin=1cm]
+                      \itemsep -0.25em
+                      \item 2 8 4 9 3 6
+                      \item 2 4 8 9 3 6
+                      \item 2 4 8 3 9 6
+                      \item 2 4 3 8 9 6
+                      \item 2 3 4 8 9 6
+                      \item 2 3 4 8 6 9
+                      \item 2 3 4 6 8 9
+                  \end{enumerate}
+              \end{center}
+              \vfill\null
+              \columnbreak
+              \begin{center}
+                  2 3 4 6 8 9 \\
+                  \textit{(terminates)}
+              \end{center}
+              \vfill\null
+              \columnbreak
+              \begin{center}
+
+                  9 8 6 4 3 2
+                  \begin{enumerate}[label=\arabic*.]
+                      \itemsep -0.25em
+                      \item 8 9 6 4 3 2
+                      \item 8 6 9 4 3 2
+                      \item 6 8 9 4 3 2
+                      \item 6 8 4 9 3 2
+                      \item 6 4 8 9 3 2
+                      \item 4 6 8 9 3 2
+                      \item 4 6 8 3 9 2
+                      \item 4 6 3 8 9 2
+                      \item 4 3 6 8 9 2
+                      \item 3 4 6 8 9 2
+                      \item 3 4 6 8 2 9
+                      \item 3 4 6 2 8 9
+                      \item 3 4 2 6 8 9
+                      \item 3 2 4 6 8 9
+                      \item 2 3 4 6 8 9
+                  \end{enumerate}
+              \end{center}
+          \end{multicols}
+    \item Assign a cost to each line. \\
+          \[C_1, C_2, \dots, C_8\]
+    \item What is the best case scenario? \\
+          The best case scenario occurs when the array is already fully sorted.
+    \item What is the worse case scenario? \\
+          The worse case scenario occurs when the array is reverse-sorted.
+    \item Give the best case runtime.
+          \begin{equation*}
+              \begin{split}
+                  [C_1 \cdot n] +
+                  [C_2 \cdot (n - 1)] +
+                  [C_3 \cdot (n - 1)] +
+                  [C_4 \cdot (n - & 1)] +
+                  [C_5] \cdot n +
+                  [C_6 \cdot 0] +
+                  [C_7 \cdot 0] +
+                  [C_8 \cdot (n - 1)] \\
+                  \implies O(n)
+              \end{split}
+          \end{equation*}
+    \item Give the worst case runtime.
+          \begin{equation*}
+              \begin{split}
+                  [C_1 \cdot n] +
+                  [C_2 \cdot (n - 1)] + &
+                  [C_3 \cdot (n - 1)] +
+                  [C_4 \cdot (n - 1)] + \\
+                  [C_5 \cdot \sum_{i=1}^{j-1}{i}] +
+                  [C_6 \cdot \sum_{i=1}^{j-1}{(i-1)}] + &
+                  [C_6 \cdot \sum_{i=1}^{j-1}{(i-1)}] +
+                  [C_8 \cdot (n - 1)] \\
+                  \implies & O(n^2)
+              \end{split}
+          \end{equation*}
+\end{enumerate}
+
+\end{document}
