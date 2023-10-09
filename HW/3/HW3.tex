@@ -1,0 +1,71 @@
+\documentclass{article}
+
+\usepackage[tmargin=0.2in,bmargin=0.25in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{enumerate,enumitem}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\title{CSCI 305 HW 3}
+\author{Isaac Boaz}
+
+\begin{document}
+\maketitle
+
+\subsection*{Problem 1}
+Show that \(5n + 12 = O(n)\) directly from the definition.
+
+\begin{proof}
+    \(5n + 12 = O(n) \implies 5n + 12 < cn\) \\
+    Suppose \(c = 6\), then
+    \begin{align*}
+        5n + 12 < 6n \\
+        12 < n
+    \end{align*}
+    which shows us that \(5n + 12 = O(n)\) for \(n_0 = 12, c = 6\).
+\end{proof}
+
+\subsection*{Problem 2}
+Show that \(2n + 100 \log n= \Omega(n)\)
+\begin{proof}
+    \(2n + 100 \log n = \Omega(n) \implies 2n + 100 \log n > cn\) \\
+    Suppose \(c = 2\), then
+    \begin{align*}
+        2n + 100 \log n > 2n \\
+        100 \log n > 0
+    \end{align*}
+    which holds true for all \(n > 1\), showing us that \(2n + 100 \log n = \Omega(n)\) for \(n_0=1,c=2\).
+\end{proof}
+
+\subsection*{Problem 3}
+Show that \(\lceil 2n \rceil + 5/n = \Theta(n)\).
+\begin{proof}
+    \begin{align*}
+        \lceil 2n \rceil + 5/n       & = \Theta(n) \implies \\
+        \lceil 2n \rceil + 5/n       & = O(n)               \\
+        \land \lceil 2n \rceil + 5/n & = \Omega(n)
+    \end{align*}
+    \subsubsection*{Part 1}
+    \(\lceil 2n \rceil + 5/n = O(n) \implies \lceil 2n \rceil + 5/n < cn\) for some \(c\). \\
+    Suppose \(c = 3\), then
+    \begin{align*}
+        \lceil 2n \rceil + 5/n < 3n & \rightarrow \lceil 2n \rceil + 5/n \leq 2n + 1 + 5/n \\
+        2n + 1 + 5/n                & < 3n                                                 \\
+        1 + 5/n                     & < n
+    \end{align*}
+    which holds true for all \(n \geq 5\), showing us that \(\lceil 2n \rceil + 5/n = O(n)\) for \(n_0 = 5, c=3\).
+    \subsubsection*{Part 2}
+    \(\lceil 2n \rceil + 5/n = \Omega(n) \implies \lceil 2n \rceil + 5/n > cn\) for some \(c\). \\
+    Suppose \(c = 1\), then
+    \begin{align*}
+        \lceil 2n \rceil + 5/n > n & \rightarrow \lceil 2n \rceil + 5/n \geq 2n + 1 + 5/n \\
+        2n + 1 + 5/n               & > n                                                  \\
+        n + \frac{5}{n}            & > -1
+    \end{align*}
+    which holds true for all \(n \geq 0\), showing us that \(\lceil 2n \rceil + 5/n = \Omega(n)\) for \(n_0 = 0, c=1\).
+\end{proof}
+
+
+\end{document}
