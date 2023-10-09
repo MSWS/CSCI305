@@ -75,7 +75,31 @@ grow as \(f(n) = O(b^n)\) for some \(b > 1\).
     \end{align*}
     holds true. \\
     \textbf{Inductive step}: Suppose \(f(n) \leq b^n\). \\
-    
+    Then \(f(n+1) = f(n) + f(n-1) \leq b^n + b^{n-1}\). \\
+    \begin{align*}
+        b^n + b^{n-1} & = b^{n-1}(b+1) \\
+                      & \leq b^{n-1}(b+b) \\
+                      & = b^{n-1}(2b) \\
+                      & = 2b^n
+    \end{align*}
+    Therefore \(f(n+1) \leq 2b^n\). \\
+\end{proof}
+
+\pagebreak
+
+\section*{Problem 4}
+Show that the recursion
+\begin{equation*}
+    T(n) = T(\frac{n}{3}) + T(\frac{2n}{3}) + O(n)
+\end{equation*}
+has a solution which is
+\begin{equation*}
+    T(n) = O(n \log n)
+\end{equation*}
+
+Note that \(T(n) = O(n \log n) \implies T(n) \leq n \log n\) \\
+\begin{proof}
+    By substitution. \\
 \end{proof}
 
 \end{document}
