@@ -1,0 +1,81 @@
+\documentclass{article}
+
+\usepackage[tmargin=0.5in,bmargin=0.25in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{enumerate,enumitem}
+
+\title{CSCI 305 HW 4}
+\author{Isaac Boaz}
+
+\begin{document}
+\maketitle
+
+\section*{Problem 1}
+Show that \[\sum_{i=1}^{n} = \frac{n(n+1)}{2} \text{ for } n \geq 1\]
+
+\begin{proof}
+    By induction. \\
+    \textbf{Base case}: Observe at \(n = 1\),
+    \begin{equation*}
+        \sum_{i=1}^{1} = \frac{1(1+1)}{2} = 1
+    \end{equation*} holds true. \\
+    \textbf{Inductive step}: Suppose \(\sum_{i=1}^{n} = \frac{n(n+1)}{2}\). \\
+    That is to say, \(1 + 2 + 3 + \cdots + n = \frac{n(n+1)}{2}\). \\
+    Then \(1 + 2 + 3 + \cdots + n + (n + 1) = \frac{n(n+1)}{2} + (n+1)\). \\
+    \begin{align*}
+        \frac{n(n+1)}{2} + (n+1) & = \frac{n(n+1)}{2} + \frac{2(n+1)}{2} \\
+                                 & = \frac{(n+1)(n+2)}{2}
+    \end{align*}
+    Therefore \(\sum_{i=1}^{n} = \frac{n(n+1)}{2} \text{ for } n \geq 1\).
+\end{proof}
+
+\pagebreak
+
+\section*{Problem 2}
+Show that \[\sum_{i=0}^{k}{ar^i} = a \left( \frac{1-r^{k+1}}{1-r} \right)\]
+
+\begin{proof}
+    By induction. \\
+    \textbf{Base case}: Observe at \(k = 0\),
+    \begin{equation*}
+        \sum_{i=0}^{0}{ar^i} = a \left( \frac{1-r^{0+1}}{1-r} \right) = a \left( \frac{1-r}{1-r} \right) = a
+    \end{equation*}
+    \textbf{Inductive step}: Suppose \(\sum_{i=0}^{k}{ar^i} = a \left( \frac{1-r^{k+1}}{1-r} \right)\). \\
+    That is to say, \(ar^0 + ar^1 + ar^2 + \cdots + ar^k = a \left(\frac{1-r^{k+1}}{1-r}\right)\). \\
+    Then \(ar^0 + ar^1 + ar^2 + \cdots + ar^k + ar^{k+1} = a \left(\frac{1-r^{k+1}}{1-r}\right) + ar^{k+1}\)
+    \begin{align*}
+        a \left(\frac{1-r^{k+1}}{1-r}\right) + ar^{k+1} & = a \left(\frac{1-r^{k+1}}{1-r}\right) + ar^{k+1} \cdot \frac{1-r}{1-r}             \\
+                                                        & = a \left(\frac{1-r^{k+1}}{1-r}\right) + a \left(\frac{r^{k+1}-r^{k+2}}{1-r}\right) \\
+                                                        & = a \left(\frac{1-r^{k+1}+r^{k+1}-r^{k+2}}{1-r}\right)                              \\
+                                                        & = a \left(\frac{1-r^{k+2}}{1-r}\right)
+    \end{align*}
+    Therefore \(\sum_{i=0}^{k}{ar^i} = a \left( \frac{1-r^{k+1}}{1-r} \right)\).
+\end{proof}
+
+\pagebreak
+
+\section*{Problem 3}
+Show that the Fibonacci numbers defined recursively by
+\begin{align*}
+    f(n) & = f(n-1) + f(n-2) \\
+    f(0) & = 0, f(1) = 1
+\end{align*}
+grow as \(f(n) = O(b^n)\) for some \(b > 1\).
+
+\begin{proof}
+    By induction. \\
+    Note that \(f(n) = O(b^n) \implies f(n) \leq b^n\). \\
+    First we will show that \(f(n) \leq b^n\). \\
+    \textbf{Base case}: Observe at \(n = 0\),
+    \begin{align*}
+        f(0) = 0 \leq b^0 \\
+        0 \leq 1
+    \end{align*}
+    holds true. \\
+    \textbf{Inductive step}: Suppose \(f(n) \leq b^n\). \\
+    
+\end{proof}
+
+\end{document}
