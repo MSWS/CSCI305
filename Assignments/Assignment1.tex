@@ -1,0 +1,46 @@
+\documentclass{article}
+
+\usepackage[tmargin=0.5in,bmargin=0.25in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{listings}
+\usepackage{multicol}
+
+\title{CSCI 305 Assignment 1}
+\author{Isaac Boaz}
+
+\begin{document}
+\maketitle
+
+\lstset
+{ %Formatting for code in appendix
+    language=Python,
+    basicstyle=\footnotesize,
+    numbers=left,
+    stepnumber=1,
+    showstringspaces=false,
+    tabsize=1,
+    breaklines=true,
+    breakatwhitespace=false,
+    numbersep=-30pt,
+    xleftmargin=-20pt
+}
+\setlength{\columnseprule}{0.1pt}
+
+\subsection*{Problem 1}
+\begin{multicols}{2}
+    \begin{lstlisting}
+        for i = 1 to n
+            j = 1
+            while j<= i do
+                j = 2.5 * j
+    \end{lstlisting}
+    \columnbreak
+    \begin{lstlisting}[numbers=none,mathescape]
+        n + 1
+        n
+        $(n + 1) \log_{2.5} n$
+        $n \log_{2.5} n$ 
+    \end{lstlisting}
+\end{multicols}
+
+\end{document}
