@@ -1,0 +1,118 @@
+\documentclass{article}
+
+\usepackage[tmargin=0.3in,bmargin=0.25in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{enumerate,enumitem}
+
+\title{CSCI 305 HW 5}
+\author{Isaac Boaz}
+
+\begin{document}
+\maketitle
+
+\subsection*{Problem 1}
+
+\lstset
+{ %Formatting for code in appendix
+    language=Python,
+    basicstyle=\footnotesize,
+    numbers=left,
+    stepnumber=1,
+    showstringspaces=false,
+    tabsize=1,
+    breaklines=true,
+    breakatwhitespace=false,
+    numbersep=-30pt,
+    xleftmargin=-20pt
+}
+
+\setlength{\columnseprule}{0.5pt}
+
+\begin{multicols}{2}
+    \begin{lstlisting}
+        def findmax(A, i, j, largest):
+            if i == j
+                largest = A[i]
+            else
+                m = flooor((i+j)/2)
+                findmax(A, i, m, big1)
+                findmax(A, m+1, j, big2)
+                largest = max(big1, big2)
+        return largest
+    \end{lstlisting}
+    \columnbreak
+    \footnotesize
+    \begin{tabular}{c}
+        Relation         \\
+        $\Theta(1)$      \\
+        \vline           \\
+        \vline           \\
+        $\bot$           \\
+        $T(\frac{n}{2})$ \\
+        $T(\frac{n}{2})$ \\
+        $\Theta(1)$      \\
+        $\Theta(1)$
+    \end{tabular}
+\end{multicols}
+
+Recurrence relation:
+\begin{align*}
+    T(1) & = \Theta(1)                   \\
+    T(n) & = 2T(\frac{n}{2}) + \Theta(1)
+\end{align*}
+
+\subsection*{Problem 2}
+
+\begin{multicols}{2}
+    \begin{lstlisting}
+        def linearsearch(A, n, key):
+            if n < 0
+                return -1
+            if key = A[n]
+                return n
+            return linearsearch(A, n-1, key)
+    \end{lstlisting}
+    \columnbreak
+    \footnotesize
+    \begin{tabular}{c}
+        Relation    \\
+        $\Theta(1)$ \\
+        \vline      \\
+        \vline      \\
+        $\bot$      \\
+        $T(n-1)$    \\
+    \end{tabular}
+\end{multicols}
+
+Recurrence relation:
+\begin{align*}
+    T(1) & = \Theta(1)          \\
+    T(n) & = T(n-1) + \Theta(1)
+\end{align*}
+
+\subsection*{Problem 3}
+\begin{multicols}{2}
+    \begin{lstlisting}
+        def fib(n):
+            if n <= 2:
+                return 1
+            return fib(n-1) + fib(n-2)
+    \end{lstlisting}
+    \columnbreak
+    \footnotesize
+    \begin{tabular}{c}
+        Relation          \\
+        $\Theta(1)$       \\
+        $\Theta(1)$       \\
+        $T(n-1) + T(n-2)$ \\
+    \end{tabular}
+\end{multicols}
+
+Recurrence relation:
+\begin{align*}
+    T(1) & = T(2) = \Theta(1)   \\
+    T(n) & = T(n-1) + \Theta(1)
+\end{align*}
+\end{document}
