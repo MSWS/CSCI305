@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1696884788 "/config/workspace/CSCI305/HW/4/HW4.tex" "HW4.pdf" "HW4" 1696884788
-  "/config/workspace/CSCI305/HW/4/HW4.tex" 1696884787 3575 08340e7934155746dad541c2651acebb ""
+["pdflatex"] 1696906960 "/config/workspace/CSCI305/HW/4/HW4.tex" "HW4.pdf" "HW4" 1696906961
+  "/config/workspace/CSCI305/HW/4/HW4.tex" 1696906960 4559 6e30f30299f475d9b0babdce04b6ae61 ""
   "/etc/texmf/web2c/texmf.cnf" 1696706487 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
@@ -66,8 +66,8 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1696706615 4379155 98693266ff65f58d9f98aff394de12d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1696706648 2799869 d303a5a1e77de5adc0432d4dd6162eb8 ""
-  "HW4.aux" 1696884788 32 c81c40425fbb5e93b90fba65da0b5e61 "pdflatex"
-  "HW4.tex" 1696884787 3575 08340e7934155746dad541c2651acebb ""
+  "HW4.aux" 1696906961 32 ab05033ccbb38b00a31b200ccedf8001 "pdflatex"
+  "HW4.tex" 1696906960 4559 6e30f30299f475d9b0babdce04b6ae61 ""
   (generated)
   "HW4.aux"
   "HW4.log"
