@@ -48,7 +48,7 @@
 Detailed Runtime:
 
 \begin{equation*}
-    C_1 \cdot (n + 1) + C_2 \cdot n + C_3 \cdot [(n+1) \log_{2.5}] + C_4 \cdot (n \log_{2.5}n)
+    C_1 \cdot (n + 1) + C_2 \cdot n + C_3 \cdot \lceil (n+1) \log_{2.5} \rceil + C_4 \cdot \lceil n \log_{2.5}n \rceil
 \end{equation*}
 
 Asymptotic Runtime:
@@ -73,8 +73,20 @@ Asymptotic Runtime:
         $C_1$ & $1$                  \\
         $C_2$ & $n$                  \\
         $C_3$ & $(n + 1) \log_{2.5}$ \\
-        $C_4$ & $n \log_{2.5} n$
+        $C_4$ & $n \log_{2.5} n$     \\
+        $C_5$ & $n$                  \\
     \end{tabular}
 \end{multicols}
+
+Detailed Runtime:
+
+\begin{equation*}
+    C_1 \cdot (n + 1) + C_2 \cdot n + C_3 \cdot \lceil (n+1) \log_{2.5} \rceil + C_4 \cdot \lceil n \log_{2.5}n \rceil
+\end{equation*}
+
+Asymptotic Runtime:
+\begin{equation*}
+    \Theta(n \log n)
+\end{equation*}
 
 \end{document}
