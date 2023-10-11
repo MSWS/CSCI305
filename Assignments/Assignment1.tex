@@ -1,6 +1,6 @@
 \documentclass{article}
 
-\usepackage[tmargin=0.5in,bmargin=0.25in]{geometry}
+\usepackage[bmargin=0.25in]{geometry}
 \usepackage{amsmath, amssymb, amsthm}
 \usepackage{listings}
 \usepackage{multicol}
@@ -69,24 +69,53 @@ Asymptotic Runtime:
     \columnbreak
     \footnotesize
     \begin{tabular}{lcc}
-        cost  & time                 \\
-        $C_1$ & $1$                  \\
-        $C_2$ & $n$                  \\
-        $C_3$ & $(n + 1) \log_{2.5}$ \\
-        $C_4$ & $n \log_{2.5} n$     \\
-        $C_5$ & $n$                  \\
+        cost  & time    \\
+        $C_1$ & $1$     \\
+        $C_2$ & $n$     \\
+        $C_3$ & $n - 1$ \\
+        $C_4$ & $n - 1$ \\
+        $C_5$ & $n$     \\
     \end{tabular}
 \end{multicols}
 
 Detailed Runtime:
 
 \begin{equation*}
-    C_1 \cdot (n + 1) + C_2 \cdot n + C_3 \cdot \lceil (n+1) \log_{2.5} \rceil + C_4 \cdot \lceil n \log_{2.5}n \rceil
+    C_1 \cdot 1 + C_2 \cdot n + C_3 \cdot (n - 1) + \cdot C_4 \cdot (n - 1) + C_5 \cdot n
 \end{equation*}
 
 Asymptotic Runtime:
 \begin{equation*}
-    \Theta(n \log n)
+    O(n)
 \end{equation*}
 
+\pagebreak
+
+\subsection*{Problem 3}
+\begin{lstlisting}[firstnumber=0]
+        def Binary_InsertionSort(A):
+            for j = 2 to n:
+                key = A[j]
+                // insert A[j] into the sorted sequence A[1..j-1]
+                left = 1
+                right = j - 1
+                while right > left:
+                    mid = floor((left + right) / 2)
+                    if key > A[mid]:
+                        left = mid + 1
+                    else right = mid
+                if key > A[left]:
+                    left = left + 1
+                for i = j downto (left + 1):
+                    A[i] = A[i - 1]
+                A[left] = key
+\end{lstlisting}
+
+\begin{enumerate}
+    \item
+          Note that regardless of input, the for loop will always run $n$ times, with the contents of the loop running $n - 1$ times. \\
+          \textbf{Worst Case} occurs when the array is sorted in reverse order, as the left and right bounds will need to be updated \(\log_2 j\) times.\\
+          \textbf{Best Case} occurs when the array is already sorted, as the left and right bounds will only need to be updated once.\\
+    \item \textbf{Worst Case} for the \textit{while} block is the same in the best and worst case scenario, running \(\log_2 j\) times.\\
+\end{enumerate}
 \end{document}
