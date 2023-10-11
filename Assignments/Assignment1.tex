@@ -92,7 +92,8 @@ Asymptotic Runtime:
 \pagebreak
 
 \subsection*{Problem 3}
-\begin{lstlisting}[firstnumber=0]
+\begin{multicols}{2}
+    \begin{lstlisting}[firstnumber=0]
         def Binary_InsertionSort(A):
             for j = 2 to n:
                 key = A[j]
@@ -109,13 +110,32 @@ Asymptotic Runtime:
                 for i = j downto (left + 1):
                     A[i] = A[i - 1]
                 A[left] = key
-\end{lstlisting}
+    \end{lstlisting}
+    \columnbreak
+    \footnotesize
+    \begin{tabular}{cc}
+        best  & worst \\
+        $n$   & $n$   \\
+        $n-1$ & $n-1$ \\
+        $n-1$ & $n-1$ \\[1em]
+        $n-1$ & $n-1$ \\
+        $n-1$ & $n-1$ \\
+        $\log_2$
+    \end{tabular}
+\end{multicols}
+
 
 \begin{enumerate}
     \item
           Note that regardless of input, the for loop will always run $n$ times, with the contents of the loop running $n - 1$ times. \\
+
+          \textbf{Worst Case} occurs when the array is reverse sorted. The \textit{while} loop will run \(\log_2 j\) times, and the \textit{for} loop will run \(j - 1\) times.\\
+          \begin{align*}
+              \sum_{j=2}^{n}{log_2(j)}
+          \end{align*}
+
           \textbf{Worst Case} occurs when the array is sorted in reverse order, as the left and right bounds will need to be updated \(\log_2 j\) times.\\
           \textbf{Best Case} occurs when the array is already sorted, as the left and right bounds will only need to be updated once.\\
-    \item \textbf{Worst Case} for the \textit{while} block is the same in the best and worst case scenario, running \(\log_2 j\) times.\\
+    \item \textbf{Worst Case} for the \textit{while} block is the same in the best and worst case scenario, running \(\lceil \log_2 j \rceil\) times.\\
 \end{enumerate}
 \end{document}
