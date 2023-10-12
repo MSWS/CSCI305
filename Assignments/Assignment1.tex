@@ -1,6 +1,6 @@
 \documentclass{article}
 
-\usepackage[bmargin=0.25in]{geometry}
+\usepackage[tmargin=0.5in,bmargin=0.25in]{geometry}
 \usepackage{amsmath, amssymb, amsthm}
 \usepackage{listings}
 \usepackage{multicol}
@@ -114,28 +114,63 @@ Asymptotic Runtime:
     \columnbreak
     \footnotesize
     \begin{tabular}{cc}
-        best  & worst \\
-        $n$   & $n$   \\
-        $n-1$ & $n-1$ \\
-        $n-1$ & $n-1$ \\[1em]
-        $n-1$ & $n-1$ \\
-        $n-1$ & $n-1$ \\
-        $\log_2$
+        best       & worst                      \\
+        $n$        & $n$                        \\
+        $n-1$      & $n-1$                      \\
+        $n-1$      & $n-1$                      \\[1em]
+        $n-1$      & $n-1$                      \\
+        $n-1$      & $n-1$                      \\
+        $(n-1)(2)$ & $\sum_{j=2}^{n+1} \log(j)$ \\
+        $(n-1)$    & $\sum_{j=2}^{n} \log(j)$   \\[1em]
+        $(n-1)$    & $\sum_{j=2}^{n} \log(j)$   \\
+        $(n-1)/2$  & $\sum_{j=2}^{n} \log(j)$   \\
+        $(n-1)/2$  & $\sum_{j=2}^{n} \log(j)$   \\
+        $n-1$      & $n-1$                      \\
+        $(n-1)/2$  & $(n-1)/2$                  \\
+        $n-1$      & $\sum_{j=2}^{n+1}j$        \\
+        $n-1$      & $\sum_{j=2}^{n}j$          \\
+        $n-1$      & $n-1$                      \\
     \end{tabular}
 \end{multicols}
 
 
 \begin{enumerate}
+    \item We can tell that the best case scenario will occur when the array is already sorted, as the binary search will exit after one check, and the inner for loop will only run once to push items.
+          The worst case scenario occurs when the array is reverse-sorted, as the inner for block will have to run $n$ times to push items.
+    \item For best case, the while block is run once for each iteration of the loop, resulting in
+          \begin{align*}
+              \sum_{j=2}^{n}{1} \text{ runtime, which at max is } O(n)
+          \end{align*}
+          For worst case, the while block is run \(\log j\) times for each iteration of the loop, resulting in
+          \begin{align*}
+              \sum_{j=2}^{n}{\log j} \text{ runtime, which at max is } O(n \log n)
+          \end{align*}
+    \item The if block is not in any loop aside from the outer-most for loop. Since the for loop's best and worst case runtime is the same, the if's runtime will also be the same at
+          \[O(n)\]
+    \item For best case, the for loop is only run once, resulting in
+          \begin{align*}
+              \sum_{j=2}^{n}{1} \text{ runtime, which at max is } O(n)
+          \end{align*}
+          For worst case, the for loop is run \(j\) times, resulting in
+          \begin{align*}
+              \sum_{j=2}^{n}{j} \text{ runtime, which at max is } O(n^2)
+          \end{align*}
     \item
           Note that regardless of input, the for loop will always run $n$ times, with the contents of the loop running $n - 1$ times. \\
 
-          \textbf{Worst Case} occurs when the array is reverse sorted. The \textit{while} loop will run \(\log_2 j\) times, and the \textit{for} loop will run \(j - 1\) times.\\
+          \textbf{Worst Case} occurs when the array is reverse sorted. Within the top level for loop, the \textit{while} loop will run \(\log j\) times, the if block will run once, and the inner \textit{for} loop will run \(j\) times.\\
           \begin{align*}
-              \sum_{j=2}^{n}{log_2(j)}
+              \sum_{j=2}^{n}{O(j+\log j + 1)} \\
+              \text{This boils down to } O(n^2)
           \end{align*}
+          \textbf{Best Case} occurs when the array is already sorted, as the left and right bounds will only need to be updated once.
+          Within the top-level for loop, the \textit{while} loop will run once, the if block will run once, and the inner \textit{for} loop will run once.\\
+          \begin{align*}
+              \sum_{j=2}^{n}{O(1 + 1 + 1)} \\
+              \text{This boils down to } O(n)
+          \end{align*}
+        \item Given that the primary improvement to binary insertion sort is that binary search is used to find the proper index for each key, I do not see any situation where this version would be \textit{worse} than standard insertion sort.
+              For example, if the array is already sorted, the binary search will only run once, and the inner for loop will only run once, resulting in a runtime of $O(n)$, which is the same as standard insertion sort.
 
-          \textbf{Worst Case} occurs when the array is sorted in reverse order, as the left and right bounds will need to be updated \(\log_2 j\) times.\\
-          \textbf{Best Case} occurs when the array is already sorted, as the left and right bounds will only need to be updated once.\\
-    \item \textbf{Worst Case} for the \textit{while} block is the same in the best and worst case scenario, running \(\lceil \log_2 j \rceil\) times.\\
 \end{enumerate}
 \end{document}
