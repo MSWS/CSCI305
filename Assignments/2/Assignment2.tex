@@ -7,7 +7,7 @@
 \usepackage{enumitem}
 
 \title{CSCI 305 Assignment 2}
-\author{Isaac Boaz}
+\author{(Solo) Isaac Boaz}
 
 \begin{document}
 \maketitle
@@ -46,10 +46,27 @@
                         c_2                    & \geq \frac{1}{\log_2a}
                     \end{align*}
                     Showing us that this holds true for any \(a > 1\).
+                    \pagebreak
               \item Prove that for \(k\) integer, \(\sum_{i=1}^{n}{i^k} = \Theta(n^{k+1})\) \\
                     \begin{align*}
                         \sum_{i=1}^{n}{i^k} = \Theta(n^{k+1}) \implies \\
                         c_1n^{k+1} \leq \sum_{i=1}^{n}{i^k} \leq c_2n^{k+1}
+                    \end{align*}
+                    Similarly to the previous question, we can set \(c_1 = 0\) to resolve the lower bound.
+                    As for the upper bound, notice
+                    \begin{align*}
+                        \sum_{i=1}^{n}{i^k} & \leq \sum_{i=1}^{n}{n^k} = n \cdot n^k = n^{k+1} \\
+                        \sum_{i=1}^{n}{i^k} & \leq n^{k+1}
+                    \end{align*}
+                    hence \(\sum_{i=1}^{n}{i^k} = O(n^{k+1})\).
+          \end{enumerate}
+    \item  \begin{enumerate}[label=\arabic*.]
+              \item Let \(p > 0\). Show that \(\log n = o(n^p)\). \\
+                    To show that \(\log n = o(n^p)\), we must show that \(\lim_{n \to \infty}{\frac{\log n}{n^p}} = 0\).
+                    \begin{align*}
+                        \lim_{n \to \infty}{\frac{\log n}{n^p}} & = \lim_{n \to \infty}{\frac{\frac{1}{n}}{pn^{p-1}}} \\
+                                                               & = \lim_{n \to \infty}{\frac{1}{pn^p}}                \\
+                                                               & = 0
                     \end{align*}
           \end{enumerate}
 \end{enumerate}
