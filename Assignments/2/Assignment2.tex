@@ -5,6 +5,7 @@
 \usepackage{listings}
 \usepackage{multicol}
 \usepackage{enumitem}
+\usepackage{pgfplots}
 
 \title{CSCI 305 Assignment 2}
 \author{(Solo) Isaac Boaz}
@@ -65,10 +66,118 @@
                     To show that \(\log n = o(n^p)\), we must show that \(\lim_{n \to \infty}{\frac{\log n}{n^p}} = 0\).
                     \begin{align*}
                         \lim_{n \to \infty}{\frac{\log n}{n^p}} & = \lim_{n \to \infty}{\frac{\frac{1}{n}}{pn^{p-1}}} \\
-                                                               & = \lim_{n \to \infty}{\frac{1}{pn^p}}                \\
-                                                               & = 0
+                                                                & = \lim_{n \to \infty}{\frac{1}{pn^p}}               \\
+                                                                & = 0
+                    \end{align*}
+              \item Let \(q > 0, p > 0\) Show that \(2^{qn} = \omega(n^p)\). \\
+                    To show that \(2^{qn} = \omega(n^p)\), we must show that \(\lim_{n \to \infty}{\frac{2^{qn}}{n^p}} = \infty\).
+                    \begin{align*}
+                        \lim_{n \to \infty} \frac{2^{qn}}{n^p} & = \lim_{n \to \infty} \frac{qn2^{qn}}{pn^{p-1}} \\
+                                                               & = \lim_{n \to \infty} \frac{qn2^{qn}}{pn^p}     \\
+                                                               & = \lim_{n \to \infty} \frac{qn}{pn^p}           \\
+                                                               & = \lim_{n \to \infty} \frac{q}{pn^{p-1}}        \\
+                                                               & = \infty
+                    \end{align*}
+              \item \begin{figure}
+                        \centering
+                        \begin{tikzpicture}
+                            \begin{axis}[
+                                    xlabel={$n$},
+                                    ylabel={Function value},
+                                    domain=1:100,
+                                    legend pos=north west,
+                                    ymajorgrids=true,
+                                    grid style=dashed,
+                                    scale only axis,
+                                    width=\textwidth,
+                                    height=6cm
+                                ]
+
+                                \addplot[blue, thick, samples=100] {ln(x)};
+                                \addlegendentry{$\ln(n)$}
+
+                                \addplot[red, thick, samples=100] {x^0.1};
+                                \addlegendentry{$n^{0.1}$}
+                            \end{axis}
+                        \end{tikzpicture}
+                        \caption{Plot of $\ln(n)$ and $n^{0.1}$}
+                        \label{fig:inftyPlot}
+                    \end{figure}
+                    In Figure \ref{fig:inftyPlot} we see the plots of \(\ln(n)\) and \(n^{0.1}\). We can see that \(\ln(n)\) grows slower than \(n^{0.1}\) for all \(n > 1\). Note, however, that both functions have the same limit as \(n \to \infty\), namely \(\infty\).
+          \end{enumerate}
+          \pagebreak
+    \item \begin{equation*}
+              2^{\log x} \leq x \log x \leq x \log_{10} x \leq 2^x \leq e^{x \log x} \leq x!
+          \end{equation*}
+    \item Let \(F(1) = F(2) = 1\) be the `initial conditions' for the Fibonnaci recurrence given for \(n > 2\) by
+          \begin{equation*}
+              F(n) = F(n-1) + F(n-2)
+          \end{equation*}
+          \begin{enumerate}[label=\arabic*.]
+              \item \begin{proof}
+                        By induction. \\
+                        \textbf{Base Case}: \(n = 1, n = 2\).
+                        Observe at \(n = 1\), \(F(1) = 1\), and at \(n = 2\), \(F(2) = 1\) \\
+                        Lastly, \(F(3) = F(2) + F(1) = 1 + 1 = 2 = \frac{a^3 - b^3}{\sqrt{5}}\). \\
+                        \textbf{Inductive Step}: Assume \(F(n) = \frac{a^n - b^n}{\sqrt{5}}\) where \(a = \frac{1 + \sqrt{5}}{2}, b = \frac{1 - \sqrt{5}}{2}\). \\
+                        Then (keeping in mind \(a^2 = a + 1\)) \begin{align*}
+                            F(n+1) & = F(n) + F(n-1)                                                   \\
+                                   & = \frac{a^n - b^n}{\sqrt{5}} + \frac{a^{n-1} - b^{n-1}}{\sqrt{5}} \\
+                                   & = \frac{a^n - b^n + a^{n-1} - b^{n-1}}{\sqrt{5}}                  \\
+                                   & = \frac{a^{n-1}(a + 1) - b^{n-1}(b + 1)}{\sqrt{5}}                \\
+                                   & = \frac{a^{n-1}a^2 - b^{n-1}b^2}{\sqrt{5}}                        \\
+                                   & = \frac{a^{n+1} - b^{n+1}}{\sqrt{5}}
+                        \end{align*}
+                    \end{proof}
+              \item Using the formula from the previous question, we can show that \(F(n) = \Theta(a^n)\).
+                    \begin{align*}
+                        F(n) = \Theta(a^n) \implies                                    \\
+                        \exists c_1, c_2, n_0 \in \mathbb{R}^+ \text{ such that }      \\
+                        c_1x^n \leq F(n) \leq c_2x^n \text{ for all } n \geq n_0       \\
+                        \rightarrow c_1x^n \leq \frac{a^n - b^n}{\sqrt{5}} \leq c_2x^n \\
+                    \end{align*}
+                    Note that for any \(n\) or \(x\), we can set \(c_1 = 0\) to resolve the lower bound, leaving us with the upper bound.
+                    Since we know \(b\) is bounded by \(-1 \leq b \leq 0\), \(-1 \leq b^2 \leq 0\). Thus
+                    \begin{align*}
+                        \frac{a^n - b^n}{\sqrt{5}}                  & \leq \frac{a^n + 1}{\sqrt{5}}                               \\
+                        \text{since the + 1 becomes proportionally} & \text{ smaller as } n \to \infty \text{, we can ignore it.} \\
+                        \frac{a^n + 1}{\sqrt{5}}                    & \leq \frac{2a^n}{\sqrt{5}}                                  \\
+                        \text{Leaving us with } c_2                 & = \frac{2}{\sqrt{5}} \text{ for any } n_0.
                     \end{align*}
           \end{enumerate}
+    \item \phantom{a} \lstset
+          { %Formatting for code in appendix
+              language=Python,
+              basicstyle=\footnotesize,
+              numbers=left,
+              stepnumber=1,
+              showstringspaces=false,
+              tabsize=1,
+              breaklines=true,
+              breakatwhitespace=false,
+              numbersep=-30pt,
+              xleftmargin=-20pt
+          }
+          \setlength{\columnseprule}{0.1pt}
+          \begin{multicols}{2}
+              \begin{lstlisting}
+        for i = 1 to n
+            for j = 1 to i
+                k = 1
+                    while k <= j
+                        k = k +1
+        \end{lstlisting}
+              \columnbreak
+              \footnotesize
+              \begin{tabular}{l}
+                  n + 1                                                   \\
+                  $\sum_{i=1}^{n+1}{i}$                                   \\
+                  $\sum_{i=1}^{n}{\sum_{j=1}^{i}{j}}$                     \\
+                  $\sum_{i=1}^{n}{\sum_{j=1}^{i}{\sum_{k=1}^{j + 2}{k}}}$ \\
+                  $\sum_{i=1}^{n}{\sum_{j=1}^{i}{\sum_{k=1}^{j + 1}{k}}}$
+              \end{tabular}
+          \end{multicols}
+          The inner-most loop runs \(j + 1\) times, the middle loop runs \(i\) times, and the outer loop runs \(n\) times. Thus the total runtime is \(\Theta(n^3)\).
 \end{enumerate}
 
 
