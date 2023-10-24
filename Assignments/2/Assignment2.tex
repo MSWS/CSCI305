@@ -1,0 +1,58 @@
+\documentclass{article}
+
+\usepackage[tmargin=0.5in,bmargin=0.25in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{enumitem}
+
+\title{CSCI 305 Assignment 2}
+\author{Isaac Boaz}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+    \item  \begin{enumerate}[label=\arabic*.]
+              \item Prove that finite sums and $\Theta$ commute.
+                    \begin{equation*}
+                        \sum_{i=1}^{n}{\Theta(f(i))} = \Theta(\sum_{i=1}^{n}{f(i)})
+                    \end{equation*}
+                    \begin{proof}
+                        To show that finite sums and $\Theta$ commute, we must show that each has the same inequality constraints. \\[1em]
+                        \textbf{Left-Hand Side}.
+                        \begin{align*}
+                                                                     & \sum_{i=1}^{n}{\Theta(f(i))}                              \\
+                            \rightarrow \sum_{i=1}^{n}{c_1f(i)} \leq & \sum_{i=1}^{n}{\Theta(f(i))} \leq \sum_{i=1}^{n}{c_2f(i)} \\
+                            \rightarrow c_1\sum_{i=1}^{n}{f(i)} \leq & \sum_{i=1}^{n}{\Theta(f(i))} \leq c_2\sum_{i=1}^{n}{f(i)}
+                        \end{align*}
+                        \textbf{Right-Hand Side}.
+                        \begin{align*}
+                                                                     & \Theta(\sum_{i=1}^{n}{f(i)})                              \\
+                            \rightarrow c_1\sum_{i=1}^{n}{f(i)} \leq & \Theta(\sum_{i=1}^{n}{f(i)}) \leq c_2\sum_{i=1}^{n}{f(i)}
+                        \end{align*}
+                        Since both equations have the same lower and upper bounds, $\Theta$ is commutive.
+                    \end{proof}
+              \item Prove that \(\log_an = \Theta(\lg n)\) for any \(a > 1\), where \(\lg\) is \(\log_2\).
+                    \begin{align*}
+                        \log_an = \Theta(\lg n) \implies                          \\
+                        \exists c_1, c_2, n_0 \in \mathbb{R}^+ \text{ such that } \\
+                        c_1\lg n \leq \log_an \leq c_2\lg n \text{ for all } n \geq n_0
+                    \end{align*}
+                    Note that for any \(a\) or \(n\), we can set \(c_1 = 0\), Leaving us with the right-hand side of the equation.
+                    \begin{align*}
+                        \log_an                & \leq c_2 \lg n         \\
+                        \frac{\log_2n}{log_2a} & \leq c_2 \log_2n       \\
+                        c_2                    & \geq \frac{1}{\log_2a}
+                    \end{align*}
+                    Showing us that this holds true for any \(a > 1\).
+              \item Prove that for \(k\) integer, \(\sum_{i=1}^{n}{i^k} = \Theta(n^{k+1})\) \\
+                    \begin{align*}
+                        \sum_{i=1}^{n}{i^k} = \Theta(n^{k+1}) \implies \\
+                        c_1n^{k+1} \leq \sum_{i=1}^{n}{i^k} \leq c_2n^{k+1}
+                    \end{align*}
+          \end{enumerate}
+\end{enumerate}
+
+
+\end{document}
