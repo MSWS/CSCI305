@@ -180,27 +180,19 @@
           The inner-most loop runs \(j + 1\) times, the middle loop runs \(i\) times, and the outer loop runs \(n\) times. Thus the total runtime is \(\Theta(n^3)\).
     \item [Ex. Credit] Prove
           \begin{equation*}
-              \lim_{n \to \infty} \frac{f(n)}{g(n)} = C, \text{ } 0 \leq C \leq \infty \implies f(n) = \Theta(g(n))
+              \lim_{n \to \infty} \frac{f(n)}{g(n)} = C, \text{ } 0 < C < \infty \implies f(n) = \Theta(g(n))
           \end{equation*}
           First let's rewrite this using the definition of \(\Theta\).
           \begin{align*}
               \cdots \implies \exists c_1, c_2, n_0 \text{ such that } \\
               c_1g(n) \leq f(n) \leq c_2g(n) \text{ for all } n \geq n_0
           \end{align*}
-          There are three cases to consider for \(C\). \\
-          \textbf{Case 1}: \(C = 0\). \\
-          This implies that \(g(n)\) grows much faster than \(f(n)\), meaning that \(f(n)\) is upper-bounded by \(g(n)\) for all \(n \geq n_0\). \\
-          By this logic \(f(n) = O(g(n))\). \\[1em]
-          \textbf{Case 2}: \(0 < C < \infty\). \\
           This implies that \(f(n)\) and \(g(n)\) grow at the same rate, meaning that \(f(n)\) is upper-bounded by \(g(n)\) and lower-bounded by \(g(n)\) for all \(n \geq n_0\). \\
           \begin{align*}
               C - \epsilon \leq \frac{f(n)}{g(n)}      & \leq C + \epsilon       \\
               \rightarrow (C - \epsilon)g(n) \leq f(n) & \leq (C + \epsilon)g(n)
           \end{align*}
           Thus \(f(n) = \Theta(g(n))\), where \(c_1 = C - \epsilon, c_2 = C + \epsilon\) \\[1em]
-          \textbf{Case 3}: \(C = \infty\). \\
-          This implies that \(g(n)\) grows much slower than \(f(n)\), meaning that \(f(n)\) is lower-bounded by \(g(n)\) for all \(n \geq n_0\). \\
-          By this logic \(f(n) = \Omega(g(n))\). \\
 \end{enumerate}
 
 
