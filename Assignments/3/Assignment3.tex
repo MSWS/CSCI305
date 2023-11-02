@@ -6,6 +6,7 @@
 \usepackage{multicol}
 \usepackage{enumitem}
 \usepackage{forest}
+\usepackage{pdfpages}
 
 \title{CSCI 305 Assignment 3}
 \author{(Solo) Isaac Boaz}
@@ -130,7 +131,57 @@
                         \Theta(n)
                     \end{equation*}
               \item What size array is being input and output? \\
-                    By the definition of the function, the input array is \(n\) elements and the output is \(n\) elements.
+                    We see the first array takes the Fourier Transform of the even-indexed elements,
+                    and the second array takes the Transform of the odd-indexed elements. Thus, each
+                    array is \(n/2\) in size.
+              \item Recurrence relation for the cost of \(T(n)\).
+                    \begin{align*}
+                        T(n) & = 2T(\frac{n}{2}) + O(\frac{n}{2}) \\
+                             & = 2T(\frac{n}{2}) + c\frac{n}{2}
+                    \end{align*}
+              \item Solve the above recurrence relation.
+                    \begin{center}
+                        \begin{forest}
+                            [$ cn/2$
+                                [$cn/4$
+                                        [$cn/8$]
+                                            [$cn/8$]
+                                    ]
+                                    [$cn/4$
+                                        [$cn/8$]
+                                            [$cn/8$]
+                                    ]
+                            ]
+                        \end{forest}
+                    \end{center}
+                    Going by the tree diagram, we see each level \(x\) has \(\frac{n}{2}\) work.
+                    Since we halve the size of the problem each level, there will be \(\log_2n\) levels, amounting to a runtime of
+                    \begin{equation*}
+                        O(n \log n)
+                    \end{equation*}
+                    Additionally, since the subtree is balanced, we can say it is both \(O(n \log n)\) and \(\Omega(n \log n)\), and thus \(T(n) = \Theta(n \log n)\).
+              \item Find the \(\Theta\) cost of \lstinline|slowFT|.
+                    Since the outer \lstinline|for| loop is run \(n\) times, and the inner loop is consequently run \(n^2\) times, we know that \textit{Algorithm 1} is asymptotically faster.
+                    \begin{equation*}
+                        \Theta(n^2) > \Theta(n \log n)
+                    \end{equation*}
+          \end{enumerate}
+    \item Strass
+          \begin{enumerate}[label=\arabic*.]
+              \item The base case for this algorithm is when it encounters matrices that are \(16 \times 16\) or smaller.
+              \item I have verified this.
+              \item \begin{tabular}{l|c|c}
+                        $n$       & $s(n)$  & $m(n)$ \\
+                        \hline 32 & 0.0176  & 0.0112 \\
+                        64        & 0.0043  & 0.0001 \\
+                        128       & 0.0035  & 0.0002 \\
+                        256       & 0.0234  & 0.0006 \\
+                        512       & 0.1993  & 0.0100 \\
+                        1024      & 1.0313  & 0.0150 \\
+                        2048      & 7.3894  & 0.1085 \\
+                        4096      & 51.6236 & 0.7990
+                    \end{tabular}
+                    \includepdf[pages=-,scale=0.6,angle=270]{figure.pdf}
           \end{enumerate}
 \end{enumerate}
 
