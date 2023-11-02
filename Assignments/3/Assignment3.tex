@@ -1,0 +1,138 @@
+\documentclass{article}
+
+\usepackage[tmargin=0.5in,bmargin=0.25in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{forest}
+
+\title{CSCI 305 Assignment 3}
+\author{(Solo) Isaac Boaz}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+    \item Provide a \(\Theta\) bound for the solution of each of these recurrences.
+          \begin{enumerate}[label=\arabic*.]
+              \item \[T(n) = 7T(n/7) + n\]
+                    \begin{center}
+                        \begin{forest}
+                            [$n$
+                                [$\frac{n}{7}$
+                                        [$\frac{n}{49}$]
+                                            [$\frac{n}{49}$]
+                                            [$\frac{n}{49}$]
+                                            [$\frac{n}{49}$]
+                                            [$\frac{n}{49}$]
+                                            [$\frac{n}{49}$]
+                                            [$\frac{n}{49}$]
+                                    ]
+                                    [$\frac{n}{7}$
+                                        [$\vdots$]
+                                    ]
+                                    [$\frac{n}{7}$
+                                        [$\vdots$]
+                                    ]
+                                    [$\frac{n}{7}$
+                                        [$\vdots$]
+                                    ]
+                                    [$\frac{n}{7}$
+                                        [$\vdots$]]
+                                    [$\frac{n}{7}$
+                                        [$\vdots$]]
+                                    [$\frac{n}{7}$
+                                        [$\frac{n}{49}$]
+                                            [$\frac{n}{49}$]
+                                            [$\frac{n}{49}$]
+                                            [$\frac{n}{49}$]
+                                            [$\frac{n}{49}$]
+                                            [$\frac{n}{49}$]
+                                            [$\frac{n}{49}$]
+                                    ]
+                            ]
+                        \end{forest}
+                    \end{center}
+                    We see each level has \(7^i \cdot \frac{n}{7^i} = n\) work done. Since \(n\) is being divided by \(7\) each level, this will be run \(\log_{7}{n}\) times.
+                    \begin{align*}
+                        n \cdot \log_7{n} \rightarrow \Theta(n \log n) \\
+                    \end{align*}
+              \item \[T(n) = 9T(n/3) + n^2\]
+                    \begin{center}
+                        \begin{forest}
+                            [$n^2$
+                                [$(\frac{n}{3})^2$
+                                        [$(\frac{n}{9})^2$]
+                                            [$(\frac{n}{3^2})^2$
+                                                [$(\frac{n}{3^3})^2$
+                                                        [$\vdots$]
+                                                    ]
+                                            ]
+                                            [$\ddots$]
+                                    ]
+                                    [$\frac{n^2}{9}$
+                                        [$\vdots$]]
+                                    [$\frac{n^2}{9}$
+                                        [$\vdots$]]
+                                    [$\frac{n^2}{9}$
+                                        [$\vdots$]]
+                                    [$\frac{n^2}{9}$
+                                        [$\vdots$]]
+                                    [$\frac{n^2}{9}$
+                                        [$\vdots$]]
+                                    [$\frac{n^2}{9}$
+                                        [$\vdots$]]
+                                    [$\frac{n^2}{9}$
+                                        [$\vdots$]]
+                                    [$\frac{n^2}{9}$
+                                        [$\vdots$]]
+                            ]
+                        \end{forest}
+                    \end{center}
+                    At each level we do \(n^2\) amount of work. Since we're dividing by \(3\) each time, we will do \(\log_3n\) levels.
+                    Thus, our runtime is \(n^2 \cdot \log_3 n \rightarrow \Theta(n^2 \log n)\)
+              \item \[T(n) = 49T(n/25) + n^{3/2} \log n\]
+          \end{enumerate}
+    \item Draw the recurrence tree for the following recurrence:
+          \begin{equation*}
+              T(n) = 2T(n/3) + T(3n/4) + c \sqrt{n}
+          \end{equation*}
+          \begin{center}
+              \begin{forest}
+                  [$c \sqrt{n}$
+                      [$c \sqrt{\frac{n}{3}}$
+                              [$c \sqrt{\frac{n}{9}}$]
+                                  [$c \sqrt{\frac{n}{9}}$]
+                                  [$c \sqrt{\frac{n}{4}}$]
+                          ]
+                          [$c \sqrt{\frac{n}{3}}$
+                              [$c \sqrt{\frac{n}{9}}$]
+                                  [$c \sqrt{\frac{n}{9}}$]
+                                  [$c \sqrt{\frac{n}{4}}$]
+                          ]
+                          [$c \sqrt{\frac{3n}{4}}$
+                              [$c \sqrt{\frac{n}{4}}$]
+                                  [$c \sqrt{\frac{n}{4}}$]
+                                  [$c \sqrt{\frac{9n}{16}}$]
+                          ]
+                  ]
+              \end{forest}
+          \end{center}
+    \item FFT
+          \begin{enumerate}[label=\arabic*.]
+              \item Give an asymptotic $\Theta$-bound for lines 1-3.
+                    \begin{equation*}
+                        \Theta(1)
+                    \end{equation*}
+              \item Give an asymptotic $\Theta$-bound for lines 6-9.
+                    \begin{equation*}
+                        \Theta(n)
+                    \end{equation*}
+              \item What size array is being input and output? \\
+                    By the definition of the function, the input array is \(n\) elements and the output is \(n\) elements.
+          \end{enumerate}
+\end{enumerate}
+
+
+\end{document}
