@@ -1,6 +1,6 @@
 \documentclass{article}
 
-\usepackage[tmargin=0.5in,bmargin=0.25in]{geometry}
+\usepackage[tmargin=0.5in,bmargin=0.5in]{geometry}
 \usepackage{amsmath, amssymb, amsthm}
 \usepackage{listings}
 \usepackage{multicol}
@@ -94,9 +94,28 @@
                     \end{center}
                     At each level we do \(n^2\) amount of work. Since we're dividing by \(3\) each time, we will do \(\log_3n\) levels.
                     Thus, our runtime is \(n^2 \cdot \log_3 n \rightarrow \Theta(n^2 \log n)\)
-              \item \[T(n) = 49T(n/25) + n^{3/2} \log n\]
+              \item \[T(n) = 49T(n/25) + n^{3/2} \log n\]\
+                    \begin{multicols}{2}
+                        \begin{center}
+                            \begin{forest}
+                                [$n^{3/2} \log n$
+                                    [$49 \times \bigl((\frac{n}{25})^{3/2} \log \frac{n}{25}\bigr)$
+                                            [
+                                                    $49^2 \times \bigl((\frac{n}{625})^{3/2} \log \frac{n}{625}\bigr)$
+                                                    [
+                                                            $49^3 \times \bigl((\frac{n}{25^3})^{3/2} \log \frac{n}{25^3}\bigr)$
+                                                        ]
+                                                ]]
+                                ]
+                            \end{forest}
+                        \end{center}
+                        \columnbreak
+                        \begin{center}
+                            We see that each level does some \(C n^{3/2} \log n\) work. By the definition of \(T(n) = \Theta(f(n))\), \(T(n) = \Theta(n^{3/2})\)
+                        \end{center}
+                    \end{multicols}
           \end{enumerate}
-    \item Draw the recurrence tree for the following recurrence:
+    \item \pagebreak Draw the recurrence tree for the following recurrence:
           \begin{equation*}
               T(n) = 2T(n/3) + T(3n/4) + c \sqrt{n}
           \end{equation*}
@@ -120,6 +139,22 @@
                           ]
                   ]
               \end{forest}
+              \\
+              At level \dots
+              \begin{multicols}{2}
+                  \begin{enumerate}[label=\arabic*:]
+                      \item \(c \sqrt{n}\)
+                      \item \(2 c \sqrt{\frac{n}{3}} + c \sqrt{\frac{3n}{4}}\)
+                      \item \(4c \sqrt{\frac{n}{9}} + 4c \sqrt{\frac{n}{4}} + c \sqrt{\frac{9n}{16}}\)
+                  \end{enumerate}
+                  \columnbreak
+                  \begin{enumerate}[label=$\rightarrow$]
+                      \item \(c \sqrt{n}\)
+                      \item \(c( 2\sqrt{\frac{n}{3}} + \sqrt{\frac{3n}{4}})\)
+                      \item \(c ( 4(\sqrt{\frac{n}{9}} + \sqrt{\frac{n}{4}}) + \sqrt{\frac{9n}{16}})\)
+                  \end{enumerate}
+              \end{multicols}
+
           \end{center}
     \item FFT
           \begin{enumerate}[label=\arabic*.]
@@ -137,25 +172,25 @@
                     array is \(n/2\) in size.
               \item Recurrence relation for the cost of \(T(n)\).
                     \begin{align*}
-                        T(n) & = 2T(\frac{n}{2}) + O(\frac{n}{2}) \\
-                             & = 2T(\frac{n}{2}) + c\frac{n}{2}
+                        T(n) & = 2T(\frac{n}{2}) + O(n) \\
+                             & = 2T(\frac{n}{2}) + cn
                     \end{align*}
               \item Solve the above recurrence relation.
                     \begin{center}
                         \begin{forest}
-                            [$ cn/2$
-                                [$cn/4$
-                                        [$cn/8$]
-                                            [$cn/8$]
+                            [$ cn$
+                                [$cn/2$
+                                        [$cn/4$]
+                                            [$cn/4$]
                                     ]
-                                    [$cn/4$
-                                        [$cn/8$]
-                                            [$cn/8$]
+                                    [$cn/2$
+                                        [$cn/4$]
+                                            [$cn/4$]
                                     ]
                             ]
                         \end{forest}
                     \end{center}
-                    Going by the tree diagram, we see each level \(x\) has \(\frac{n}{2}\) work.
+                    Going by the tree diagram, we see each level \(x\) has \(n\) work.
                     Since we halve the size of the problem each level, there will be \(\log_2n\) levels, amounting to a runtime of
                     \begin{equation*}
                         O(n \log n)
@@ -167,10 +202,11 @@
                         \Theta(n^2) > \Theta(n \log n)
                     \end{equation*}
           \end{enumerate}
-    \item Strass
+    \item \pagebreak Strass Algorithm
           \begin{enumerate}[label=\arabic*.]
               \item The base case for this algorithm is when it encounters matrices that are \(16 \times 16\) or smaller.
-              \item I have verified this.
+              \item I multiplied a randomly generated 64x64 matrix against another randomly generated 64x64 matrix, the largest
+                    squared difference between the two matricies was \(< 1.92 \times 10^{-13}\)
               \item \begin{tabular}{l|c|c}
                         $n$       & $s(n)$  & $m(n)$ \\
                         \hline 32 & 0.0176  & 0.0112 \\
@@ -186,8 +222,10 @@
                         \includegraphics[page=1,angle=270,width=0.7\textwidth]{figure.pdf}
                     }
                     Visually comparing the plot of \(y = x^{\log_27}\) against the original datapoints, it appears the trend lines seems to roughly match, with a constant factor making the Strass algorithm slower.
-              \item The naive algorithm for matrix multiplication does \((n - 1)n^2\) additions / subtractions for summing up each row/column product, whereas the Stras algorithm will always do more
-                    additions / subtractions. Thus, since the Strass algorithm is likely to do more subtractions, it is less stable.
+              \item The naive algorithm for matric multiplication does not do any subtractions, only additions. Strauss' algorithm will only ever do greater than or equal to as many subtractions, making it less stable due to decimal accuracy.
+              \item \begin{equation*}
+                        T(n) = 7T(\frac{n}{2}) + 6
+                    \end{equation*}
           \end{enumerate}
 
 \end{enumerate}
