@@ -6,7 +6,8 @@
 \usepackage{multicol}
 \usepackage{enumitem}
 \usepackage{forest}
-\usepackage{pdfpages}
+% \usepackage{pdfpages}
+\usepackage{graphicx}
 
 \title{CSCI 305 Assignment 3}
 \author{(Solo) Isaac Boaz}
@@ -181,8 +182,14 @@
                         2048      & 7.3894  & 0.1085 \\
                         4096      & 51.6236 & 0.7990
                     \end{tabular}
-                    \includepdf[pages=-,scale=0.6,angle=270]{figure.pdf}
+                    \raisebox{10em}{
+                        \includegraphics[page=1,angle=270,width=0.7\textwidth]{figure.pdf}
+                    }
+                    Visually comparing the plot of \(y = x^{\log_27}\) against the original datapoints, it appears the trend lines seems to roughly match, with a constant factor making the Strass algorithm slower.
+              \item The naive algorithm for matrix multiplication does \((n - 1)n^2\) additions / subtractions for summing up each row/column product, whereas the Stras algorithm will always do more
+                    additions / subtractions. Thus, since the Strass algorithm is likely to do more subtractions, it is less stable.
           \end{enumerate}
+
 \end{enumerate}
 
 
