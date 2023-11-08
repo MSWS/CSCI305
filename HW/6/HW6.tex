@@ -6,113 +6,146 @@
 \usepackage{multicol}
 \usepackage{enumerate,enumitem}
 
-\title{CSCI 305 HW 6}
+\title{\vspace{-1.2in} CSCI 305 HW 6}
 \author{Isaac Boaz}
 
 \begin{document}
 \maketitle
 
 \begin{equation*}
-    X_k = \sum_{n=0}^{N-1} x_n e^{-\frac{2i \pi}{N}kn}
+      X_k = \sum_{n=0}^{N-1} x_n e^{-\frac{2i \pi}{N}kn}
 \end{equation*}
 
-\subsection*{Problem 1}
+\section*{Problem 1}
 
 Compute the DFT of \dots
 
 \begin{enumerate}[label=\Alph*)]
-    \item \([0, 1, 0, -1]\)
-          \begin{enumerate}[label={k=\arabic*}, start=0]
-              \item \begin{align*}
-                        \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}0n}} & = \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}0n}}                                \\
-                                                                     & = 0 + e^{\frac{-2 i \pi}{4} 0 \cdot 1} + 0 - e^{\frac{-2 i \pi}{4} 0 \cdot 3} \\
-                                                                     & = 0 + 1 + 0 - 1                                                               \\
-                                                                     & = 0
-                    \end{align*}
-              \item \begin{align*}
-                        \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}1n}} & = \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}1n}}                                \\
-                                                                     & = 0 + e^{\frac{-2 i \pi}{4} 1 \cdot 1} + 0 - e^{\frac{-2 i \pi}{4} 1 \cdot 3} \\
-                                                                     & = 0 - i + 0 - i                                                               \\
-                                                                     & = 0 -2i
-                    \end{align*}
-              \item \begin{align*}
-                        \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}2n}} & = \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}2n}}                                \\
-                                                                     & = 0 + e^{\frac{-2 i \pi}{4} 2 \cdot 1} + 0 - e^{\frac{-2 i \pi}{4} 2 \cdot 3} \\
-                                                                     & = 0 - 1 + 0 + 1                                                               \\
-                                                                     & = 0
-                    \end{align*}
-              \item \begin{align*}
-                        \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}3n}} & = \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}3n}}                                \\
-                                                                     & = 0 + e^{\frac{-2 i \pi}{4} 3 \cdot 1} + 0 - e^{\frac{-2 i \pi}{4} 3 \cdot 3} \\
-                                                                     & = 0 + i + 0 + i                                                               \\
-                                                                     & = 0 + 2i
-                    \end{align*}
-          \end{enumerate}
-          \begin{equation*}
-              DFT([0, 1, 0, -1]) = [0, -2i, 0, 2i]
-          \end{equation*}
-    \item \pagebreak \([1, 1, 1, 1]\)
-          (In-Class Exercise)
-          DFT([1, 1, 1, 1]) = [4, 0, 0, 0]
-    \item \([0, -1, 0, 1]\)
-          \begin{enumerate}[label={k=\arabic*}, start=0]
-              \item \begin{align*}
-                        \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}0n}} & = \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}0n}}                                \\
-                                                                     & = 0 - e^{\frac{-2 i \pi}{4} 0 \cdot 1} + 0 + e^{\frac{-2 i \pi}{4} 0 \cdot 3} \\
-                                                                     & = 0 - 1 + 0 + 1                                                               \\
-                                                                     & = 0
-                    \end{align*}
-              \item \begin{align*}
-                        \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}1n}} & = \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}1n}}                                \\
-                                                                     & = 0 - e^{\frac{-2 i \pi}{4} 1 \cdot 1} + 0 + e^{\frac{-2 i \pi}{4} 1 \cdot 3} \\
-                                                                     & = 0 + i + 0 + i                                                               \\
-                                                                     & = 0 + 2i
-                    \end{align*}
-              \item \begin{align*}
-                        \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}2n}} & = \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}2n}}                                \\
-                                                                     & = 0 - e^{\frac{-2 i \pi}{4} 2 \cdot 1} + 0 + e^{\frac{-2 i \pi}{4} 2 \cdot 3} \\
-                                                                     & = 0 + 1 + 0 - 1                                                               \\
-                                                                     & = 0
-                    \end{align*}
-              \item \begin{align*}
-                        \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}3n}} & = \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}3n}}                                \\
-                                                                     & = 0 - e^{\frac{-2 i \pi}{4} 3 \cdot 1} + 0 + e^{\frac{-2 i \pi}{4} 3 \cdot 3} \\
-                                                                     & = 0 - i + 0 - i                                                               \\
-                                                                     & = 0 - 2i
-                    \end{align*}
-                    \begin{equation*}
-                        DFT([0, -1, 0, 1]) = [0, 2i, 0, -2i]
-                    \end{equation*}
-          \end{enumerate}
-    \item \pagebreak \([0, 1, 0, -1, 0, 1, 0, -1]\)
-          \begin{enumerate}[label={k=\arabic*}, start=0]
-              \item \begin{align*}
-                        \sum_{n=0}^{7}{x_n e^{-\frac{2 i \pi}{4}0n}} & = \sum_{n=0}^{7}{x_n e^{-\frac{2 i \pi}{8}0n}}                                                                                                              \\
-                                                                     & = 0 + e^{\frac{-2 i \pi}{8} 0 \cdot 1} + 0 - e^{\frac{-2 i \pi}{8} 0 \cdot 3} + 0 + e^{\frac{-2 i \pi}{8} 0 \cdot 5} + 0 - e^{\frac{-2 i \pi}{8} 0 \cdot 7} \\
-                                                                     & = 0 + 1 + 0 - 1 + 0 + 1 + 0 - 1                                                                                                                             \\
-                                                                     & = 0
-                    \end{align*}
-              \item \begin{align*}
-                        \sum_{n=0}^{7}{x_n e^{-\frac{2 i \pi}{4}1n}} & = \sum_{n=0}^{7}{x_n e^{-\frac{2 i \pi}{8}1n}}                                                                                                              \\
-                                                                     & = 0 + e^{\frac{-2 i \pi}{8} 1 \cdot 1} + 0 - e^{\frac{-2 i \pi}{8} 1 \cdot 3} + 0 + e^{\frac{-2 i \pi}{8} 1 \cdot 5} + 0 - e^{\frac{-2 i \pi}{8} 1 \cdot 7} \\
-                                                                     & = 0 + e^{-\frac{i \pi}{4}} + 0 - e^{-\frac{3 i \pi}{4}} + 0 + e^{\frac{3 i \pi}{4}} + 0 - e^{\frac{i \pi}{4}}                                               \\
-                                                                     & = 0
-                    \end{align*}
-              \item \begin{align*}
-                        \sum_{n=0}^{7}{x_n e^{-\frac{2 i \pi}{4}2n}} & = \sum_{n=0}^{7}{x_n e^{-\frac{2 i \pi}{8}2n}}                                                                                                              \\
-                                                                     & = 0 + e^{\frac{-2 i \pi}{8} 2 \cdot 1} + 0 - e^{\frac{-2 i \pi}{8} 2 \cdot 3} + 0 + e^{\frac{-2 i \pi}{8} 2 \cdot 5} + 0 - e^{\frac{-2 i \pi}{8} 2 \cdot 7} \\
-                                                                     & = 0 - i + 0 - i + 0 - i + 0 - i                                                                                                                             \\
-                                                                     & = 0 - 4i
-                    \end{align*}
-              \item \begin{align*}
-                        \sum_{n=0}^{7}{x_n e^{-\frac{2 i \pi}{4}3n}} & = \sum_{n=0}^{7}{x_n e^{-\frac{2 i \pi}{8}3n}}                                                                                                              \\
-                                                                     & = 0 + e^{\frac{-2 i \pi}{8} 3 \cdot 1} + 0 - e^{\frac{-2 i \pi}{8} 3 \cdot 3} + 0 + e^{\frac{-2 i \pi}{8} 3 \cdot 5} + 0 - e^{\frac{-2 i \pi}{8} 3 \cdot 7} \\
-                                                                     & = 0 + e^{-\frac{3 i \pi}{4}} + 0 - e^{-\frac{i \pi}{4}} + 0 - e^{\frac{i \pi}{4}} + 0 - e^{\frac{3 i \pi}{4}}                                               \\
-                                                                     & = 0
-                    \end{align*}
-                    \begin{equation*}
-                        DFT([0, -1, 0, 1]) = [0, 2i, 0, -2i]
-                    \end{equation*}
-          \end{enumerate}
+      \item \([0, 1, 0, -1]\)
+            \begin{enumerate}[label={k=\arabic*}, start=0]
+                  \item \begin{align*}
+                              \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}0n}} & = \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}0n}}                                \\
+                                                                           & = 0 + e^{\frac{-2 i \pi}{4} 0 \cdot 1} + 0 - e^{\frac{-2 i \pi}{4} 0 \cdot 3} \\
+                                                                           & = 0 + 1 + 0 - 1                                                               \\
+                                                                           & = 0
+                        \end{align*}
+                  \item \begin{align*}
+                              \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}1n}} & = \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}1n}}                                \\
+                                                                           & = 0 + e^{\frac{-2 i \pi}{4} 1 \cdot 1} + 0 - e^{\frac{-2 i \pi}{4} 1 \cdot 3} \\
+                                                                           & = 0 - i + 0 - i                                                               \\
+                                                                           & = 0 -2i
+                        \end{align*}
+                  \item \begin{align*}
+                              \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}2n}} & = \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}2n}}                                \\
+                                                                           & = 0 + e^{\frac{-2 i \pi}{4} 2 \cdot 1} + 0 - e^{\frac{-2 i \pi}{4} 2 \cdot 3} \\
+                                                                           & = 0 - 1 + 0 + 1                                                               \\
+                                                                           & = 0
+                        \end{align*}
+                  \item \begin{align*}
+                              \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}3n}} & = \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}3n}}                                \\
+                                                                           & = 0 + e^{\frac{-2 i \pi}{4} 3 \cdot 1} + 0 - e^{\frac{-2 i \pi}{4} 3 \cdot 3} \\
+                                                                           & = 0 + i + 0 + i                                                               \\
+                                                                           & = 0 + 2i
+                        \end{align*}
+            \end{enumerate}
+            \begin{equation*}
+                  DFT([0, 1, 0, -1]) = [0, -2i, 0, 2i]
+            \end{equation*}
+            \textbf{Analysis}: Since the input does not have a low-frequency presence of data, it makes sense that \(\text{DFT}_0\) is 0. As for the complex
+            parts of the DFT, I assume it has something to do with the polarity of the signal / frequency.
+      \item \pagebreak \([1, 1, 1, 1]\)
+            (In-Class Exercise)
+            \begin{equation*}
+                  DFT([1, 1, 1, 1]) = [4, 0, 0, 0]
+            \end{equation*}
+            \textbf{Analysis}: We see that the data has a low frequency of data (all 1-s), so it makes sense that the highest level (lowest frequency) of the DFT is 4.
+      \item \([0, -1, 0, 1]\)
+            \begin{enumerate}[label={k=\arabic*}, start=0]
+                  \item \begin{align*}
+                              \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}0n}} & = \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}0n}}                                \\
+                                                                           & = 0 - e^{\frac{-2 i \pi}{4} 0 \cdot 1} + 0 + e^{\frac{-2 i \pi}{4} 0 \cdot 3} \\
+                                                                           & = 0 - 1 + 0 + 1                                                               \\
+                                                                           & = 0
+                        \end{align*}
+                  \item \begin{align*}
+                              \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}1n}} & = \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}1n}}                                \\
+                                                                           & = 0 - e^{\frac{-2 i \pi}{4} 1 \cdot 1} + 0 + e^{\frac{-2 i \pi}{4} 1 \cdot 3} \\
+                                                                           & = 0 + i + 0 + i                                                               \\
+                                                                           & = 0 + 2i
+                        \end{align*}
+                  \item \begin{align*}
+                              \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}2n}} & = \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}2n}}                                \\
+                                                                           & = 0 - e^{\frac{-2 i \pi}{4} 2 \cdot 1} + 0 + e^{\frac{-2 i \pi}{4} 2 \cdot 3} \\
+                                                                           & = 0 + 1 + 0 - 1                                                               \\
+                                                                           & = 0
+                        \end{align*}
+                  \item \begin{align*}
+                              \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}3n}} & = \sum_{n=0}^{3}{x_n e^{-\frac{2 i \pi}{4}3n}}                                \\
+                                                                           & = 0 - e^{\frac{-2 i \pi}{4} 3 \cdot 1} + 0 + e^{\frac{-2 i \pi}{4} 3 \cdot 3} \\
+                                                                           & = 0 - i + 0 - i                                                               \\
+                                                                           & = 0 - 2i
+                        \end{align*}
+                        \begin{equation*}
+                              DFT([0, -1, 0, 1]) = [0, 2i, 0, -2i]
+                        \end{equation*}
+                        \textbf{Analysis}: Since the input array is actually the same as (1), it makes sense that the output array would be the same with reversed signs.
+            \end{enumerate}
+      \item \pagebreak \([0, 1, 0, -1, 0, 1, 0, -1]\)
+            \begin{enumerate}[label={k=\arabic*}, start=0]
+                  \item \begin{align*}
+                              \sum_{n=0}^{7}{x_n e^{-\frac{2 i \pi}{4}0n}} & = \sum_{n=0}^{7}{x_n e^{-\frac{2 i \pi}{8}0n}}                                                                                                              \\
+                                                                           & = 0 + e^{\frac{-2 i \pi}{8} 0 \cdot 1} + 0 - e^{\frac{-2 i \pi}{8} 0 \cdot 3} + 0 + e^{\frac{-2 i \pi}{8} 0 \cdot 5} + 0 - e^{\frac{-2 i \pi}{8} 0 \cdot 7} \\
+                                                                           & = 0 + 1 + 0 - 1 + 0 + 1 + 0 - 1                                                                                                                             \\
+                                                                           & = 0
+                        \end{align*}
+                  \item \begin{align*}
+                              \sum_{n=0}^{7}{x_n e^{-\frac{2 i \pi}{4}1n}} & = \sum_{n=0}^{7}{x_n e^{-\frac{2 i \pi}{8}1n}}                                                                                                              \\
+                                                                           & = 0 + e^{\frac{-2 i \pi}{8} 1 \cdot 1} + 0 - e^{\frac{-2 i \pi}{8} 1 \cdot 3} + 0 + e^{\frac{-2 i \pi}{8} 1 \cdot 5} + 0 - e^{\frac{-2 i \pi}{8} 1 \cdot 7} \\
+                                                                           & = 0 + e^{-\frac{i \pi}{4}} + 0 - e^{-\frac{3 i \pi}{4}} + 0 + e^{\frac{3 i \pi}{4}} + 0 - e^{\frac{i \pi}{4}}                                               \\
+                                                                           & = 0
+                        \end{align*}
+                  \item \begin{align*}
+                              \sum_{n=0}^{7}{x_n e^{-\frac{2 i \pi}{4}2n}} & = \sum_{n=0}^{7}{x_n e^{-\frac{2 i \pi}{8}2n}}                                                                                                              \\
+                                                                           & = 0 + e^{\frac{-2 i \pi}{8} 2 \cdot 1} + 0 - e^{\frac{-2 i \pi}{8} 2 \cdot 3} + 0 + e^{\frac{-2 i \pi}{8} 2 \cdot 5} + 0 - e^{\frac{-2 i \pi}{8} 2 \cdot 7} \\
+                                                                           & = 0 - i + 0 - i + 0 - i + 0 - i                                                                                                                             \\
+                                                                           & = 0 - 4i
+                        \end{align*}
+                  \item \begin{align*}
+                              \sum_{n=0}^{7}{x_n e^{-\frac{2 i \pi}{4}3n}} & = \sum_{n=0}^{7}{x_n e^{-\frac{2 i \pi}{8}3n}}                                                                                                              \\
+                                                                           & = 0 + e^{\frac{-2 i \pi}{8} 3 \cdot 1} + 0 - e^{\frac{-2 i \pi}{8} 3 \cdot 3} + 0 + e^{\frac{-2 i \pi}{8} 3 \cdot 5} + 0 - e^{\frac{-2 i \pi}{8} 3 \cdot 7} \\
+                                                                           & = 0 + e^{-\frac{3 i \pi}{4}} + 0 - e^{-\frac{i \pi}{4}} + 0 + e^{\frac{i \pi}{4}} + 0 - e^{\frac{3 i \pi}{4}}                                               \\
+                                                                           & = 0
+                        \end{align*}
+                  \item \begin{align*}
+                              \sum_{n=0}^{7}{x_n e^{-\frac{2 i \pi}{4}4n}} & = \sum_{n=0}^{7}{x_n e^{-\frac{2 i \pi}{8}4n}}                                                                                                              \\
+                                                                           & = 0 + e^{\frac{-2 i \pi}{8} 4 \cdot 1} + 0 - e^{\frac{-2 i \pi}{8} 4 \cdot 3} + 0 + e^{\frac{-2 i \pi}{8} 4 \cdot 5} + 0 - e^{\frac{-2 i \pi}{8} 4 \cdot 7} \\
+                                                                           & = 0 + 1 + 0 - 1 + 0 + 1 + 0 - 1                                                                                                                             \\
+                                                                           & = 0
+                        \end{align*}
+                  \item \begin{align*}
+                              \sum_{n=0}^{7}{x_n e^{-\frac{2 i \pi}{4}5n}} & = \sum_{n=0}^{7}{x_n e^{-\frac{2 i \pi}{8}5n}}                                                                                                              \\
+                                                                           & = 0 + e^{\frac{-2 i \pi}{8} 5 \cdot 1} + 0 - e^{\frac{-2 i \pi}{8} 5 \cdot 3} + 0 + e^{\frac{-2 i \pi}{8} 5 \cdot 5} + 0 - e^{\frac{-2 i \pi}{8} 5 \cdot 7} \\
+                                                                           & = 0 + e^{-\frac{i \pi}{4}} + 0 - e^{-\frac{3 i \pi}{4}} + 0 + e^{\frac{3 i \pi}{4}} + 0 - e^{\frac{i \pi}{4}}                                               \\
+                                                                           & = 0
+                        \end{align*}
+                  \item \begin{align*}
+                              \sum_{n=0}^{7}{x_n e^{-\frac{2 i \pi}{4}6n}} & = \sum_{n=0}^{7}{x_n e^{-\frac{2 i \pi}{8}6n}}                                                                                                              \\
+                                                                           & = 0 + e^{\frac{-2 i \pi}{8} 6 \cdot 1} + 0 - e^{\frac{-2 i \pi}{8} 6 \cdot 3} + 0 + e^{\frac{-2 i \pi}{8} 6 \cdot 5} + 0 - e^{\frac{-2 i \pi}{8} 6 \cdot 7} \\
+                                                                           & = 0 + i + 0 + i + 0 + i + 0 + i                                                                                                                             \\
+                                                                           & = 0 + 4i
+                        \end{align*}
+                  \item \begin{align*}
+                              \sum_{n=0}^{7}{x_n e^{-\frac{2 i \pi}{4}7n}} & = \sum_{n=0}^{7}{x_n e^{-\frac{2 i \pi}{8}7n}}                                                                                                              \\
+                                                                           & = 0 + e^{\frac{-2 i \pi}{8} 7 \cdot 1} + 0 - e^{\frac{-2 i \pi}{8} 7 \cdot 3} + 0 + e^{\frac{-2 i \pi}{8} 7 \cdot 5} + 0 - e^{\frac{-2 i \pi}{8} 7 \cdot 7} \\
+                                                                           & = 0 + e^{-\frac{3 i \pi}{4}} + 0 - e^{-\frac{i \pi}{4}} + 0 + e^{\frac{i \pi}{4}} + 0 - e^{\frac{3 i \pi}{4}}                                               \\
+                                                                           & = 0
+                        \end{align*}
+                        \begin{equation*}
+                              DFT([0, 1, 0, -1, 0, 1, 0, -1]) = [0, 0, -4i, 0, 0, 0, 4i, 0]
+                        \end{equation*}
+            \end{enumerate}
+            \textbf{Analysis}: Using our imagination, we can see that the data follows a frequency of up, down, up, down. Thus, it makes sense for the output array to have minimal values as it can encapsulate a theoretical sin / cos pattern.
 \end{enumerate}
+
+
 \end{document}
