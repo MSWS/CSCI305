@@ -1,0 +1,46 @@
+\documentclass{article}
+
+\usepackage[bmargin=0.25in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{enumerate,enumitem}
+
+\title{CSCI 305 HW 7}
+\author{Isaac Boaz}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+      \item Coinflips.
+            \begin{enumerate}[label=\alph*.]
+                  \item \begin{equation*}
+                              \bigl\{(0, 0, 0), (1, 0, 0), (0, 1, 0), (0, 0, 1),
+                              (1, 1, 0), (0, 1, 1), (1, 0, 1), (1, 1, 1)\bigr\}
+                        \end{equation*}
+                  \item \begin{tabular}{c|c|c}
+                              y & ways          & \(P[Y=y]\) \\
+                              \hline
+                              0 & TTT           & $1/8$      \\
+                              1 & HTT, THT, TTH & $3/8$      \\
+                              2 & HHT, THH, HTH & $3/8$      \\
+                              3 & HHH           & $1/8$
+                        \end{tabular}
+                  \item \begin{equation*}
+                              0 \times \frac{1}{8} + 1 \times \frac{3}{8} + 2 \times \frac{3}{8} + 3 \times \frac{1}{8} = \frac{3}{2}
+                        \end{equation*}
+                  \item It would not make sense for a single coinflip to effect the probability of future coinflips, logically, this means \(X_1, X_2, X_3\) must be independent.
+                  \item \begin{align*}
+                              E[X_1] = \frac{1}{2} \\
+                              E[X_2] = \frac{1}{2} \\
+                              E[X_3] = \frac{1}{2}
+                        \end{align*}
+                        \begin{align*}
+                              E[X_1]E[X_2]E[X_3] = \bigl(\frac{1}{2}\bigr)^3 = \frac{1}{8}
+                        \end{align*}
+                        We see that this matches with \(E[X_1X_2X_3]\), thus \(X\) is indeed independently random.
+            \end{enumerate}
+\end{enumerate}
+
+\end{document}
