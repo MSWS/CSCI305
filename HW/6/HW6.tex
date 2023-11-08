@@ -147,5 +147,24 @@ Compute the DFT of \dots
             \textbf{Analysis}: Using our imagination, we can see that the data follows a frequency of up, down, up, down. Thus, it makes sense for the output array to have minimal values as it can encapsulate a theoretical sin / cos pattern.
 \end{enumerate}
 
+\section*{Problem 2}
+Suppose the splits of every level of Quicksort are in \((1 - \alpha, \alpha)\) as a fraction of \(n\), where \(0 < \alpha \leq 1/2\) is a constant.
 
+\subsection*{Minimum Depth}
+Given an arbitrary \(\alpha\), the minimum level is
+\begin{align*}
+      \log_{1/a}n & = \frac{\log_2n}{\log_2 1/a}     \\
+                  & = \frac{\log_2 n}{\log_2 a^{-1}} \\
+                  & = \frac{log_2 n}{-1 \log a}      \\
+                  & = -\frac{\log n}{\log a}
+\end{align*}
+
+\subsection*{Maximum Depth}
+Similarly, since \(\alpha\) is lower bounded by \(1 - \alpha\), the maximum level is
+\begin{align*}
+      \log_\frac{1}{a - 1} n & = \frac{\lg n}{\lg \frac{1}{1-a}} \\
+                             & = \frac{\lg n}{\lg(1-a) ^ {-1}}   \\
+                             & = \frac{\lg n}{-\lg(1-a)}         \\
+                             & = -\frac{\lg n}{\lg(1-a)}
+\end{align*}
 \end{document}
