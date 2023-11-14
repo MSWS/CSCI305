@@ -1,0 +1,30 @@
+\documentclass{article}
+
+\usepackage[bmargin=0.25in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{enumerate,enumitem}
+
+\title{CSCI 305 HW 8}
+\author{Isaac Boaz}
+
+\begin{document}
+\maketitle
+
+Use the loop invariant `at step \(i, k = \sum_{m=1}^{i}{2^m}\) after line 6 evaluates' to show that the code is a correct algorithm to compute \(\sum_{m=1}^{n}{2^m}\).
+
+\begin{proof}
+      By Induction. \\
+      \textbf{Base Case} \(n = 1\) \\
+      We observe that the given code returns 2 which is \(= \sum_{m=1}^{2} 2^m\). \\[1em]
+      \textbf{Inductive Step} Suppose \(k_{i-1} = \sum_{m=1}^{i-1}{2^m}\). Then
+      \begin{align*}
+            k_{i} & = k_{i-1} + \ell(i)           \\
+                  & = \sum_{m=1}^{i-1}{2^m} + 2^i \\
+                  & = \sum_{m=1}^{i}{2^m}
+      \end{align*}
+      \textbf{Conclusion} By induction, the code is a correct algorithm to compute \(\sum_{m=1}^{n}{2^m}\) where \(i = n\).
+\end{proof}
+
+\end{document}
