@@ -1,0 +1,183 @@
+\documentclass{article}
+
+\usepackage[bmargin=0.25in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{enumerate,enumitem}
+\usepackage{forest}
+
+\title{\vspace{-2.5em}CSCI 305 HW 9}
+\author{Isaac Boaz}
+
+\begin{document}
+\maketitle
+
+\setlength{\columnseprule}{0.4pt}
+\begin{enumerate}[label=\arabic*)]
+      \item Calculate the amount of work for
+            \begin{enumerate}[label=\alph*.]
+                  \item \(A = [1, 2, 3, \dots, n] \rightarrow O(n \log n)\)
+                  \item \(A = [n, n - 1, n - 2, \dots, 1] \rightarrow O(n \log n)\)
+                  \item \(A\) with \(n\) distinct elements \(\rightarrow O(n \log n)\)
+                  \item \(A\) with \(n\) identical elements \(\rightarrow O(n \log n)\)
+            \end{enumerate}
+            It is apparent that heap sort's best, worst, and average runtime is not dependent on its input.
+      \item Trace what happens when you call...
+            \begin{multicols}{2}
+                  \begin{enumerate}[label=\alph*.]
+                        \item Insert(A, 30)
+                              \begin{enumerate}[label=\arabic*.]
+                                    \item We increase the heap's size by 1.
+                                    \item We insert 30 at the end of the heap.
+                                    \item We swap 30 with the 27.
+                              \end{enumerate}
+                        \item Insert(A, 40)
+                              \begin{enumerate}[label=\arabic*.]
+                                    \item We increase the heap's size by 1.
+                                    \item We insert 40 at the end of the heap.
+                                    \item We swap 40 with the 27.
+                                    \item We swap 40 with the 34.
+                                    \item We swap 40 with the 36.
+                              \end{enumerate}
+                        \item Increase-Key(A, 8, 35)
+                              \begin{enumerate}[label=\arabic*.]
+                                    \item We increase the key at index 8 \((A[8] = 22)\) by 35 (\lstinline|A[8] += 35|).
+                                    \item We swap 63 with the 34.
+                                    \item We swap 63 with the 36.
+                              \end{enumerate}
+                        \item Increase-Key(A, 6, 38)
+                              \begin{enumerate}[label=\arabic*.]
+                                    \item We increase the key at index 6 \((A[6] = 29)\) by 38 (\lstinline|A[6] += 38|).
+                                    \item We swap 67 with the 30.
+                                    \item We swap 67 with the 36.
+                              \end{enumerate}
+                        \item Extract-Max(A)
+                              \begin{enumerate}[label=\arabic*.]
+                                    \item We swap 36 with the 23.
+                                    \item We decrease the heap's size by 1.
+                                    \item We max-heapify the heap.
+                                          \begin{enumerate}[label=3.\arabic*.]
+                                                \item We swap 21 with the 34.
+                                                \item We swap 21 with the 28.
+                                                \item We swap 21 with the 24.
+                                          \end{enumerate}
+                              \end{enumerate}
+                  \end{enumerate}
+                  \columnbreak
+                  \vspace{-2.5em}
+                  \begin{forest}
+                        for tree={
+                        l sep'=0cm,
+                        l'=0.50 cm,
+                        }
+                        [36
+                              [34
+                                          [28
+                                                      [22]
+                                                      [24]
+                                          ]
+                                          [30
+                                                      [21]
+                                                      [27]
+                                          ]
+                              ]
+                              [30
+                                          [29]
+                                          [23]
+                              ]
+                        ]
+                  \end{forest}
+                  \\
+                  \begin{forest}
+                        for tree={
+                        l sep'=0cm,
+                        l'=0.76cm,
+                        }
+                        [40
+                              [36
+                                          [28
+                                                      [22]
+                                                      [24]
+                                          ]
+                                          [34
+                                                      [21]
+                                                      [27]
+                                          ]
+                              ]
+                              [30
+                                          [29]
+                                          [23]
+                              ]
+                        ]
+                  \end{forest}
+                  \\
+                  \begin{forest}
+                        for tree={
+                        l sep'=0cm,
+                        l'=0.61 cm,
+                        }
+                        [63
+                              [36
+                                          [34
+                                                      [22]
+                                                      [24]
+                                          ]
+                                          [27
+                                                      [21]
+                                                      [,phantom]
+                                          ]
+                              ]
+                              [30
+                                          [29]
+                                          [23]
+                              ]
+                        ]
+                  \end{forest}
+                  \\
+                  \begin{forest}
+                        for tree={
+                        l sep'=0cm,
+                        l'=0.61 cm,
+                        }
+                        [67
+                              [34
+                                          [28
+                                                      [22]
+                                                      [24]
+                                          ]
+                                          [27
+                                                      [21]
+                                                      [,phantom]
+                                          ]
+                              ]
+                              [36
+                                          [30]
+                                          [23]
+                              ]
+                        ]
+                  \end{forest}
+                  \\
+                  \begin{forest}
+                        for tree={
+                        l sep'=0cm,
+                        l'=0.80 cm,
+                        }
+                        [34
+                                    [28
+                                                [24
+                                                            [22]
+                                                            [21]
+                                                ]
+                                                [27]
+                                    ]
+                                    [30
+                                                [29]
+                                                [23]
+                                    ]
+                        ]
+                  \end{forest}
+            \end{multicols}
+\end{enumerate}
+
+\end{document}
