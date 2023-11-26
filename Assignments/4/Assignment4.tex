@@ -1,0 +1,133 @@
+\documentclass{article}
+
+\usepackage[tmargin=0.5in,bmargin=0.5in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{forest}
+\usepackage[group-separator={,}]{siunitx}
+
+\title{\vspace{-2.5em}CSCI 305 Assignment 4}
+\author{(Solo) Isaac Boaz}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+    \item \begin{enumerate}[label=\arabic*.]
+              \item How many 5-card outcomes are possible? \\
+                    Since one player pulls 4 cards for their hand, we have ${52 \choose 4}$ possible combinations, leaving ${48 \choose 1}$ possible combinations for the face-up card.
+                    \begin{equation*}
+                        {52 \choose 4} \times {48 \choose 1} = 12,994,800
+                    \end{equation*}
+              \item How many ways to make hand 1?
+                    \begin{itemize}
+                        \item Turned-up card must be a 5
+                        \item Player must have 5, 5, J J with one of the Jacks being the same suit as the turned-up card.
+                    \end{itemize}
+                    \begin{equation*}
+                        {4 \choose 3} \times {4 \choose 1} \times {3 \choose 1} = 48
+                    \end{equation*}
+              \item How many ways to make hand 2?
+                    \begin{itemize}
+                        \item Total hand must have 4, 5, 5, 5, 6
+                    \end{itemize}
+                    \begin{equation*}
+                        {4 \choose 1} \times {4 \choose 3} \times {4 \choose 1} = 64
+                    \end{equation*}
+              \item What is the probability of scoring 23 points (either hand 1 or hand 2)?
+                    \begin{equation*}
+                        \frac{48 + 64}{\num{12994800}} = \frac{1}{\num{116025}} \approx 0.0000086
+                    \end{equation*}
+          \end{enumerate}
+    \item  Search Query
+          \begin{enumerate}[label=\arabic*.]
+              \item Explain it cannot be the case that every \(n\) searches the algorithm takes \(\Theta(n^3)\) steps. \\
+                    By definition of $\Theta$, suppose \(T(n)\) is the search algorithm; then
+                    \begin{align*}
+                        T(n) = \Theta(n) & \implies \exists c_1, c_2, n_0 \in \mathbb{R}^+ \text{ such that } \\
+                                         & \quad \forall n \geq n_0, c_1n \leq T(n) \leq c_2n                 \\
+                    \end{align*}
+                    If \(T(n)\) \textit{did} take \(\Theta(n^3)\) steps every \(x\) steps, then we could show this by accounting for this rate:
+                    \begin{align*}
+                        T'(n)     & = T(n) + \frac{\Theta(n^3)}{x}          \\
+                        c_1n \leq & T(n) +  \frac{\Theta(n^3)}{x} \leq c_2n
+                    \end{align*}
+                    Setting \(c_1\) to 0 satisfies the lower bound, however, there is no \(c_2\) that can be set to satisfy the upper bound. Therefore, it cannot be the case that every \(n\) searches the algorithm takes \(\Theta(n^3)\) steps.
+                    \begin{align*}
+                        T(n) +  \frac{\Theta(n^3)}{x} & \leq T(n) + \frac{O(n^3)}{n} \\
+                                                      & \leq T(n) + \frac{cn^3}{n}   \\
+                    \end{align*}
+                    \vspace*{-3.5em}
+                    \begin{align*}
+                        T(n) + \frac{cn^3}{n} & \leq c_2n \\
+                        T(n) + cn^2           & \leq c_2n \\
+                    \end{align*}
+                    We can discard the leading \(T(n)\) since this is \(\leq\), making it smaller.
+                    \begin{align*}
+                        cn^2 & \leq c_2n \\
+                    \end{align*}
+              \item If the algorithm occasionally took \(\Theta(2^n)\), how rarely must this occur?
+                    \begin{align*}
+                        T(n) = \Theta(2^n) & \implies \exists c_1, c_2, n_0 \in \mathbb{R}^+ \text{ such that } \\
+                                           & \quad \forall n \geq n_0, c_12^n \leq T(n) \leq c_22^n             \\
+                    \end{align*}
+                    If \(T(n)\) \textit{did} take \(\Theta(2^n)\) steps every \(x\) steps, then we could show this by accounting for this rate:
+                    \begin{align*}
+                        T'(n)       & = T(n) + \frac{\Theta(2^n)}{x}            \\
+                        c_12^n \leq & T(n) +  \frac{\Theta(2^n)}{x} \leq c_22^n
+                    \end{align*}
+                    Setting \(c_1\) to 0 satisfies the lower bound, leaving us with the upper bound.
+                    \begin{align*}
+                        T(n) +  \frac{\Theta(2^n)}{x} & \leq T(n) + \frac{O(2^n)}{x} \\
+                                                      & \leq T(n) + \frac{c2^n}{x}   \\
+                    \end{align*}
+                    Here we must set \(x\) to \(2^n\) to avoid adding an additional leading term that would break the \(\Theta(n)\) bound. That is to say the occurence of running \(\Theta(2^n)\) must happen every \(2^n\) steps.
+          \end{enumerate}
+    \item Along the coastline
+          \begin{enumerate}[label=\arabic*.]
+              \item What is the expected number of boats that return to their home (original) village? \\
+                    Since each the probability of boat X returning to its home village is not impacted by other boats, these trials are independent.
+                    Mathematically it makes sense for each boat to have a \(\frac{1}{100}\) chance of returning to its home village. Since this is being done 100 times, we simply multiply the probability by the number of trials.
+                    \begin{equation*}
+                        \frac{1}{100} \times 100 = 1 \text{ boat}
+                    \end{equation*}
+              \item What is the expected number of villages where 2 boats show up? \\
+                    To calculate the number of villages where only 2 boats show up, let's observe that the first boat as a \(\frac{1}{100}\) chance of showing up to one village, and the second boat has a \(\frac{1}{100}\) chance of showing up as well.
+                    Since this effectively halves the number of ships, this trial is run 50 times.
+                    \begin{equation*}
+                        \frac{1}{100} \times \frac{1}{100} \times 50 = \frac{1}{200} \text{ villages}
+                    \end{equation*}
+              \item With \(n\) boats and villages, show that in \(\lim_{n \to \infty}\) the expected fraction of villages with empty docks approaches \(1 / e\). \\
+                    Observe that at \(n = 1\), the expected \# of villages with empty docks is 0. \\
+                    At \(n = 2\), the expected \# of villages with empty docks is \(\frac{1}{1}\). \\
+                    At \(n = 3\), the expected \# of villages with empty docks is
+                    \begin{equation*}
+                        \frac{3}{3} \times \frac{2}{3} \times \frac{2}{3} = \frac{12}{27}
+                    \end{equation*}
+                    At \(n = 10\), the expected \# of villages with empty docks is
+                    \begin{equation*}
+                        \frac{10}{10} \times \biggl(\frac{9}{10}\biggr)^{10} = \frac{9^{10}}{10^{10}}
+                    \end{equation*}
+                    Thus, the expected fraction of villages with empty docks is
+                    \begin{equation*}
+                        \lim_{n \to \infty} \frac{(n - 1)^n}{n^n} = \frac{1}{e}
+                    \end{equation*}
+          \end{enumerate}
+    \item Nodes
+          \begin{enumerate}[label=\arabic*.]
+              \item With \(d = 3 \text{ and } n = 10\), what is the number of self-edges in the graph? \\
+                    For any given stub, there are \(d - 1\) stubs on the same node that could form a self-edge,
+                    and \(nd - 1\) total stubs it could connect to. Thus, the expected number of self-edges is
+                    \begin{equation*}
+                        30 \times \frac{3 - 1}{30 - 1} = 30 \times \frac{2}{29} \approx 2.06896
+                    \end{equation*}
+              \item For arbitrary \(d\) and \(n\), the expected number of self-edges is
+                    \begin{equation*}
+                        nd \times \frac{d - 1}{nd - 1}
+                    \end{equation*}
+          \end{enumerate}
+\end{enumerate}
+
+\end{document}
