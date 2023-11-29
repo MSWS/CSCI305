@@ -1,6 +1,6 @@
 \documentclass{article}
 
-\usepackage[tmargin=0.5in,bmargin=0.5in]{geometry}
+\usepackage[bmargin=0.5in]{geometry}
 \usepackage{amsmath, amssymb, amsthm}
 \usepackage{listings}
 \usepackage{multicol}
@@ -27,18 +27,18 @@
                         \item Player must have 5, 5, J J with one of the Jacks being the same suit as the turned-up card.
                     \end{itemize}
                     \begin{equation*}
-                        {4 \choose 3} \times {4 \choose 1} \times {3 \choose 1} = 48
+                        {4 \choose 1} \times {3 \choose 2} \times {3 \choose 1} \times {1 \choose 1} = 36
                     \end{equation*}
               \item How many ways to make hand 2?
                     \begin{itemize}
                         \item Total hand must have 4, 5, 5, 5, 6
                     \end{itemize}
                     \begin{equation*}
-                        {4 \choose 1} \times {4 \choose 3} \times {4 \choose 1} = 64
+                        {4 \choose 1} \times {4 \choose 3} \times {4 \choose 1} \times {4 \choose 1} = 320
                     \end{equation*}
               \item What is the probability of scoring 23 points (either hand 1 or hand 2)?
                     \begin{equation*}
-                        \frac{48 + 64}{\num{12994800}} = \frac{1}{\num{116025}} \approx 0.0000086
+                        \frac{36 + 320}{\num{12994800}} = \frac{89}{\num{3248700}} \approx 0.0000273956
                     \end{equation*}
           \end{enumerate}
     \item  Search Query
@@ -94,14 +94,14 @@
                         \frac{1}{100} \times 100 = 1 \text{ boat}
                     \end{equation*}
               \item What is the expected number of villages where 2 boats show up? \\
-                    To calculate the number of villages where only 2 boats show up, let's observe that the first boat as a \(\frac{1}{100}\) chance of showing up to one village, and the second boat has a \(\frac{1}{100}\) chance of showing up as well.
+                    To calculate the number of villages where only 2 boats show up, let's observe that the first boat has a \(\frac{1}{100}\) chance of showing up to one village, and the second boat has a \(\frac{1}{100}\) chance of showing up as well.
                     Since this effectively halves the number of ships, this trial is run 50 times.
                     \begin{equation*}
                         \frac{1}{100} \times \frac{1}{100} \times 50 = \frac{1}{200} \text{ villages}
                     \end{equation*}
               \item With \(n\) boats and villages, show that in \(\lim_{n \to \infty}\) the expected fraction of villages with empty docks approaches \(1 / e\). \\
                     Observe that at \(n = 1\), the expected \# of villages with empty docks is 0. \\
-                    At \(n = 2\), the expected \# of villages with empty docks is \(\frac{1}{1}\). \\
+                    At \(n = 2\), the expected \# of villages with empty docks is \(\frac{1}{2}\). \\
                     At \(n = 3\), the expected \# of villages with empty docks is
                     \begin{equation*}
                         \frac{3}{3} \times \frac{2}{3} \times \frac{2}{3} = \frac{12}{27}
@@ -117,15 +117,15 @@
           \end{enumerate}
     \item Nodes
           \begin{enumerate}[label=\arabic*.]
-              \item With \(d = 3 \text{ and } n = 10\), what is the number of self-edges in the graph? \\
-                    For any given stub, there are \(d - 1\) stubs on the same node that could form a self-edge,
-                    and \(nd - 1\) total stubs it could connect to. Thus, the expected number of self-edges is
+              \item With \(d = 3 \text{ and } n = 10\), what is the expected number of self-edges in the graph? \\
+                    For any given stub, there are \(d\) stubs on the same node that could form a self-edge,
+                    and \(nd\) total stubs it could connect to. Thus, the expected number of self-edges is
                     \begin{equation*}
-                        30 \times \frac{3 - 1}{30 - 1} = 30 \times \frac{2}{29} \approx 2.06896
+                        30 \times \frac{3}{30} = 3
                     \end{equation*}
               \item For arbitrary \(d\) and \(n\), the expected number of self-edges is
                     \begin{equation*}
-                        nd \times \frac{d - 1}{nd - 1}
+                        nd \times \frac{d}{nd} = d
                     \end{equation*}
           \end{enumerate}
 \end{enumerate}
