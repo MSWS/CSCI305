@@ -1,0 +1,44 @@
+\documentclass{article}
+
+\usepackage[bmargin=0.25in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{enumerate,enumitem}
+\usepackage{forest}
+
+\title{CSCI 305 HW 10}
+\author{Isaac Boaz}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+      % 10, 22, 31, 4, 15, 28, 17, 88, 59
+      \item \textbf{Linear Probing} \\
+            \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+                  \hline
+                  0  & 1  & 2 & 3 & 4 & 5  & 6  & 7  & 8  & 9  & 10 \\
+                  \hline
+                  22 & 88 &   &   & 4 & 15 & 28 & 17 & 59 & 31 & 10 \\
+                  \hline
+            \end{tabular}
+      \item \textbf{Quadratic Probing} \(c_1 = 1, c_2 = 3\) \\
+            \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+                  \hline
+                  0  & 1 & 2  & 3  & 4 & 5 & 6  & 7  & 8  & 9  & 10 \\
+                  \hline
+                  22 &   & 88 & 17 & 4 &   & 28 & 59 & 15 & 31 & 10 \\
+                  \hline
+            \end{tabular}
+      \item \textbf{Double Hashing} \\
+            \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+                  \hline
+                  0  & 1 & 2  & 3  & 4 & 5  & 6  & 7  & 8 & 9  & 10 \\
+                  \hline
+                  22 &   & 59 & 17 & 4 & 15 & 28 & 88 &   & 31 & 10 \\
+                  \hline
+            \end{tabular}
+\end{enumerate}
+
+\end{document}
