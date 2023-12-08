@@ -8,7 +8,7 @@
 \usepackage{forest}
 \usepackage[group-separator={,}]{siunitx}
 
-\title{\vspace*{-3.5em} CSCI 305 Assignment 5}
+\title{\vspace*{-5.5em} CSCI 305 Assignment 5}
 \author{(Solo) Isaac Boaz}
 
 \begin{document}
@@ -42,6 +42,7 @@
               Keeping in mind one swap would put the new value as the child of 15, having another swap would require it
               to be $> 15$. Thus, we should do \textbf{4. Change 2 to 16}.
           \end{multicols}
+          \itemsep-0.75em
     \item Assuming \(h(x)\) uniformly distriutes amongst \(m\) slots, the likelihood of any element being inserted into any specific
           slot is \(\frac{1}{m}\). With \(n\) distinct keys, we get
           \begin{equation*}
@@ -66,8 +67,7 @@
               \item No. $X$ is \textit{number of comparisons required to find a node \dots \textbf{from the set of nodes in the tree} \dots}.
                     Whereas $Y$ is the case that the key is quered uniformly from \{1, 2, \dots, 30\}. Since $K$ is given, that is simply rephrasing
                     ``what is the probability that we do $y$ comparisons \textbf{given $y$ is in the tree}'', which is the same as $X$. \textbf{ie} \(Pr(Y = y | K) = Pr(X)\).
-              \item
-                    \begin{multicols}{2}
+              \item \begin{multicols}{2}
                         \begin{tabular}{c|c||c|c}
                             Value & Comparisons & Value & Comparisons \\
                             \hline
@@ -82,7 +82,8 @@
                             15    & 4           & 29    & 3           \\
                             16    & 4           & 30    & 3           \\
                         \end{tabular}
-                        \columnbreak \\[5em]
+                        \columnbreak \\
+                        \\[3em]
                         Converting this table to an expected value table:
                         \begin{tabular}{c|c|c}
                             $y$ & $Pr(y)$ & $y \cdot Pr(y)$ \\
